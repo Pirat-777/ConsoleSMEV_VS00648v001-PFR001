@@ -13,10 +13,10 @@ namespace ConsoleSMEV_VS00648v001_PFR001
 
         public static void CreateFolder()
         {
-            Directory.CreateDirectory(pathApp + "out");
-            Directory.CreateDirectory(pathApp + "in");
-            Directory.CreateDirectory(pathApp + "requestShablon");
-            Directory.CreateDirectory(pathApp + "response");
+            Directory.CreateDirectory(pathApp +"\\"+ "out");
+            Directory.CreateDirectory(pathApp + "\\" + "in");
+            Directory.CreateDirectory(pathApp + "\\" + "requestShablon");
+            Directory.CreateDirectory(pathApp + "\\" + "response");
         }
 
         public static string Request()
