@@ -1,0 +1,13 @@
+{
+  "Certificate": {
+    "SubjectKeyIdentifier": "cf11a28052f81fde36b3f76fffda03f388aee09b"
+  },
+
+  "path": {
+    "request": "requestShablon",
+    "response": "response",
+    "out": "out",
+    "in": "in"
+  }
+
+}

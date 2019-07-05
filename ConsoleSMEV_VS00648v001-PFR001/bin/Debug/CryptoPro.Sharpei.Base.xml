@@ -1,0 +1,3989 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<doc>
+  <assembly>
+    <name>CryptoPro.Sharpei.Base</name>
+  </assembly>
+  <members>
+    <member name="T:CryptoPro.Sharpei.CryptoHelper">
+      <summary>
+            Класс, реализующий вспомогательные функции по работе с
+            криптографическими объектами.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.CryptoHelper.IsGostCertificate(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+      <summary>
+            Проверяет сертификат на содержание ключа ГОСТ Р 34.10-2001.
+            </summary>
+      <param name="certificate">Проверяемый сертификат.</param>
+      <returns>Результат проверки - true, если 
+            открытый ключ сертификата является ключом ГОСТ Р 34.10-2001, 
+            false - в противном случае или, если передан 
+            null.
+            </returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.CryptoHelper.IsGost2012_256Certificate(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+      <summary>
+            Проверяет сертификат на содержание ключа ГОСТ Р 34.10-2012 256.
+            </summary>
+      <param name="certificate">Проверяемый сертификат.</param>
+      <returns>Результат проверки - true, если 
+            открытый ключ сертификата является ключом ГОСТ Р 34.10-2012 256, 
+            false - в противном случае или, если передан 
+            null.
+            </returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.CryptoHelper.IsGost2012_512Certificate(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+      <summary>
+            Проверяет сертификат на содержание ключа ГОСТ Р 34.10-2012 512.
+            </summary>
+      <param name="certificate">Проверяемый сертификат.</param>
+      <returns>Результат проверки - true, если 
+            открытый ключ сертификата является ключом ГОСТ Р 34.10-2012 512, 
+            false - в противном случае или, если передан 
+            null.
+            </returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.CPComputeKey">
+      <summary>
+            Класс, реализующий вспомогательные функции по выработке
+            ключа на основе пароля (ComputeKeyForPassPhraseSHA256)
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.CPComputeKey.#ctor(System.String,System.Security.Cryptography.X509Certificates.X509Certificate2,System.String)">
+      <summary>
+            Конструктор класса.
+            </summary>
+      <param name="passphrase">Пароль</param>
+      <param name="cert">Сертификат</param>
+      <param name="keyName">Имя ключа</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.CPComputeKey.GetKeyValue">
+      <summary>
+            возвращает значение выработанного ключа
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost2012_256KeyExchangeDeformatter">
+      <summary>
+            Класс восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeDeformatter.#ctor">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_256KeyExchangeDeformatter" /></summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeDeformatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_256KeyExchangeDeformatter" /> 
+            с заданным ключом.
+            </summary>
+      <param name="key">Объект класса 
+            <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" />
+            содержащий секретный ключ для расшифрования данных обмена 
+            ключами.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeDeformatter.DecryptKeyExchange(System.Byte[])">
+      <summary>
+            Восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+      <param name="rgb">Данные обмена ключами.</param>
+      <returns>"Чистый" симметричный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeDeformatter.DecryptKeyExchange(CryptoPro.Sharpei.GostKeyTransport)">
+      <summary>
+            Восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+      <param name="transport"> Зашифрованные данные обмена 
+            ключами.</param>
+      <returns>Симметричный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeDeformatter.DecryptKeyExchangeData(System.Byte[])">
+      <summary>
+            Восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+      <param name="data"> Зашифрованные данные обмена 
+            ключами.</param>
+      <returns>Симметричный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeDeformatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Устанавливает секретный ключ.
+            </summary>
+      <param name="key">Объект класса AsymmetricAlgorithm, 
+            содержащий секретный ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="key" /> не поддерживает алгоритм
+            <see cref="T:CryptoPro.Sharpei.Gost3410_2012_256" />.</exception>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost2012_256KeyExchangeDeformatter.Parameters">
+      <summary>
+            Параметры алгоритма.
+            </summary>
+      <returns>Всегда null</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter">
+      <summary>
+            Класс формирования данных для обмена симметричным ключом
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter.#ctor">
+      <summary>
+            Создание объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter" /> 
+            с заданным открытым ключом получателя.
+            </summary>
+      <param name="key">Класс, содержащий ключ, для которого 
+            будет производиться шифрование пердаваемой информации.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter.CreateKeyExchange(System.Byte[])">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="data">"Чистый" симметричный ключ 
+            ГОСТ 28147.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter.CreateKeyExchange(System.Byte[],System.Type)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="data">"Чистый" симметричный ключ 
+            ГОСТ 28147.</param>
+      <param name="symAlgType">Параметр не используется в
+            этой версии.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter.CreateKeyExchange(System.Security.Cryptography.SymmetricAlgorithm)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="alg">Симметричный ключ ГОСТ 28147.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter.CreateKeyExchange(System.Security.Cryptography.SymmetricAlgorithm,CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="alg">Симметричный ключ ГОСТ 28147.</param>
+      <param name="wrapMethod">Алгоритм экпорта</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter.CreateKeyExchangeData(System.Security.Cryptography.SymmetricAlgorithm,CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="alg">Симметричный ключ ГОСТ 28147.</param>
+      <param name="wrapMethod">Алгоритм экпорта</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter.CreateKeyExchangeData(System.Security.Cryptography.SymmetricAlgorithm)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="alg">Симметричный ключ ГОСТ 28147.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Устанавливает открытый ключ.
+            </summary>
+      <param name="key">Алгоритм, содержащий открытый ключ 
+            получателя.</param>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost2012_256KeyExchangeFormatter.Parameters">
+      <summary>
+            Возвращает параметры обмена ключами.
+            </summary>
+      <returns>Всегда null.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost2012_256SignatureDeformatter">
+      <summary>
+             Класс проверки подписи на алгоритме ГОСТ Р 34.10-2012 256.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256SignatureDeformatter.#ctor">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_256SignatureDeformatter" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256SignatureDeformatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+             Создание объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_256SignatureDeformatter" /> c
+             заданным ключом.
+             </summary>
+      <param name="key">Криптопровайдер, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+             <paramref name="key" /> не является реализацией
+             алгоритма ГОСТ Р 34.10-2012 256.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256SignatureDeformatter.SetHashAlgorithm(System.String)">
+      <summary>
+             Устанавливает алгоритм хэширования, используемый при проверке
+             подписи.
+             </summary>
+      <param name="strName">Название алгоритма.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+             Устанавливаемое имя алгоритма неизвестно или не поддерживает
+             алгоритм ГОСТ Р 34.11-2012 256.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256SignatureDeformatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+             Устанавливает ключ, используемый при проверке подписи.
+             </summary>
+      <param name="key">Объект, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+             <paramref name="key" /> не является реализацией
+             алгоритма ГОСТ Р 34.10-2012 256.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256SignatureDeformatter.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+             Проверяет подпись от значения хэш-функции.
+             </summary>
+      <param name="rgbHash">Значение хэш-функции.</param>
+      <param name="rgbSignature">Значение подписи.</param>
+      <returns>true, если подпись верна,
+             false - иначе.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+             Не установлен ключ проверки подписи.</exception>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost2012_256SignatureDescription">
+      <summary>
+            Класс, содержащий информацию о свойствах цифровой подписи на
+            алгоритме ГОСТ Р 34.10-2012 256.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256SignatureDescription.#ctor">
+      <summary>
+            Конструктор класса <see cref="T:CryptoPro.Sharpei.Gost2012_256SignatureDescription" />.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost2012_256SignatureFormatter">
+      <summary>
+             Класc формирования подписи на алгоритме ГОСТ Р 34.10-2012 256.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256SignatureFormatter.#ctor">
+      <summary>
+            Создание объекта класса <see cref="T:CryptoPro.Sharpei.GostSignatureFormatter" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256SignatureFormatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+             Создание объекта класса <see cref="T:CryptoPro.Sharpei.GostSignatureFormatter" />
+             с заданным ключом.
+             </summary>
+      <param name="key">Провайдер, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+             <paramref name="key" /> не является реализацией
+             алгоритма ГОСТ Р 34.10-2012 256.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256SignatureFormatter.CreateSignature(System.Byte[])">
+      <summary>
+             Создает подпись на значение хэш-функции.
+             </summary>
+      <param name="rgbHash">Подписываемый хэш.</param>
+      <returns>Подпись для <paramref name="rgbHash" /></returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+             Не установлен алгоритм хэширования или ключ</exception>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256SignatureFormatter.SetHashAlgorithm(System.String)">
+      <summary>
+             Устанавливает алгоритм хэширования, используемый при создании
+             подписи.
+             </summary>
+      <param name="strName">Название алгоритма.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+             Устанавливаемое имя алгоритма неизвестно или не поддерживает
+             алгоритм ГОСТ Р 34.11-2012 256.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_256SignatureFormatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+             Устанавливает ключ, используемый при создании подписи.
+             </summary>
+      <param name="key">Объект, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+             <paramref name="key" /> не является реализацией
+             алгоритма ГОСТ Р 34.10-2012 256.</exception>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost2012_512KeyExchangeDeformatter">
+      <summary>
+            Класс восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeDeformatter.#ctor">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.GostKeyExchangeDeformatter" /></summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeDeformatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_512KeyExchangeDeformatter" /> 
+            с заданным ключом.
+            </summary>
+      <param name="key">Объект класса 
+            <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" />
+            содержащий секретный ключ для расшифрования данных обмена 
+            ключами.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeDeformatter.DecryptKeyExchange(System.Byte[])">
+      <summary>
+            Восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+      <param name="rgb">Данные обмена ключами.</param>
+      <returns>"Чистый" симметричный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeDeformatter.DecryptKeyExchange(CryptoPro.Sharpei.GostKeyTransport)">
+      <summary>
+            Восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+      <param name="transport"> Зашифрованные данные обмена 
+            ключами.</param>
+      <returns>Симметричный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeDeformatter.DecryptKeyExchangeData(System.Byte[])">
+      <summary>
+            Восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+      <param name="data"> Зашифрованные данные обмена 
+            ключами.</param>
+      <returns>Симметричный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeDeformatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Устанавливает секретный ключ.
+            </summary>
+      <param name="key">Объект класса AsymmetricAlgorithm, 
+            содержащий секретный ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="key" /> не поддерживает алгоритм
+            <see cref="T:CryptoPro.Sharpei.Gost3410_2012_512" />.</exception>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost2012_512KeyExchangeDeformatter.Parameters">
+      <summary>
+            Параметры алгоритма.
+            </summary>
+      <returns>Всегда null</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter">
+      <summary>
+            Класс формирования данных для обмена симметричным ключом
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter.#ctor">
+      <summary>
+            Создание объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter" /> 
+            с заданным открытым ключом получателя.
+            </summary>
+      <param name="key">Класс, содержащий ключ, для которого 
+            будет производиться шифрование пердаваемой информации.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter.CreateKeyExchange(System.Byte[])">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="data">"Чистый" симметричный ключ 
+            ГОСТ 28147.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter.CreateKeyExchange(System.Byte[],System.Type)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="data">"Чистый" симметричный ключ 
+            ГОСТ 28147.</param>
+      <param name="symAlgType">Параметр не используется в
+            этой версии.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter.CreateKeyExchange(System.Security.Cryptography.SymmetricAlgorithm)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="alg">Симметричный ключ ГОСТ 28147.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter.CreateKeyExchange(System.Security.Cryptography.SymmetricAlgorithm,CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="alg">Симметричный ключ ГОСТ 28147.</param>
+      <param name="wrapMethod">Алгоритм экпорта</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter.CreateKeyExchangeData(System.Security.Cryptography.SymmetricAlgorithm)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="alg">Симметричный ключ ГОСТ 28147.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter.CreateKeyExchangeData(System.Security.Cryptography.SymmetricAlgorithm,CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="alg">Симметричный ключ ГОСТ 28147.</param>
+      <param name="wrapMethod">Алгоритм экспорта</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Устанавливает открытый ключ.
+            </summary>
+      <param name="key">Алгоритм, содержащий открытый ключ 
+            получателя.</param>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost2012_512KeyExchangeFormatter.Parameters">
+      <summary>
+            Возвращает параметры обмена ключами.
+            </summary>
+      <returns>Всегда null.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost2012_512SignatureDeformatter">
+      <summary>
+             Класс проверки подписи на алгоритме ГОСТ Р 34.10-2012 512.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512SignatureDeformatter.#ctor">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_512SignatureDeformatter" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512SignatureDeformatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+             Создание объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_512SignatureDeformatter" /> c
+             заданным ключом.
+             </summary>
+      <param name="key">Криптопровайдер, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+             <paramref name="key" /> не является реализацией
+             алгоритма ГОСТ Р 34.10-2012 512.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512SignatureDeformatter.SetHashAlgorithm(System.String)">
+      <summary>
+             Устанавливает алгоритм хэширования, используемый при проверке
+             подписи.
+             </summary>
+      <param name="strName">Название алгоритма.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+             Устанавливаемое имя алгоритма неизвестно или не поддерживает
+             алгоритм ГОСТ Р 34.11-2012 512.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512SignatureDeformatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+             Устанавливает ключ, используемый при проверке подписи.
+             </summary>
+      <param name="key">Объект, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+             <paramref name="key" /> не является реализацией
+             алгоритма ГОСТ Р 34.10-2012 512.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512SignatureDeformatter.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+             Проверяет подпись от значения хэш-функции.
+             </summary>
+      <param name="rgbHash">Значение хэш-функции.</param>
+      <param name="rgbSignature">Значение подписи.</param>
+      <returns>true, если подпись верна,
+             false - иначе.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+             Не установлен ключ проверки подписи.</exception>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost2012_512SignatureDescription">
+      <summary>
+            Класс, содержащий информацию о свойствах цифровой подписи на
+            алгоритме ГОСТ Р 34.10-2012 512.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512SignatureDescription.#ctor">
+      <summary>
+            Конструктор класса <see cref="T:CryptoPro.Sharpei.Gost2012_512SignatureDescription" />.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost2012_512SignatureFormatter">
+      <summary>
+             Класc формирования подписи на алгоритме ГОСТ Р 34.10-2012 512.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512SignatureFormatter.#ctor">
+      <summary>
+            Создание объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_512SignatureFormatter" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512SignatureFormatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+             Создание объекта класса <see cref="T:CryptoPro.Sharpei.Gost2012_512SignatureFormatter" />
+             с заданным ключом.
+             </summary>
+      <param name="key">Провайдер, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+             <paramref name="key" /> не является реализацией
+             алгоритма ГОСТ Р 34.10-2012 512.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512SignatureFormatter.CreateSignature(System.Byte[])">
+      <summary>
+             Создает подпись на значение хэш-функции.
+             </summary>
+      <param name="rgbHash">Подписываемый хэш.</param>
+      <returns>Подпись для <paramref name="rgbHash" /></returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+             Не установлен алгоритм хэширования или ключ</exception>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512SignatureFormatter.SetHashAlgorithm(System.String)">
+      <summary>
+             Устанавливает алгоритм хэширования, используемый при создании
+             подписи.
+             </summary>
+      <param name="strName">Название алгоритма.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+             Устанавливаемое имя алгоритма неизвестно или не поддерживает
+             алгоритм ГОСТ Р 34.11-2012 512.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost2012_512SignatureFormatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+             Устанавливает ключ, используемый при создании подписи.
+             </summary>
+      <param name="key">Объект, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+             <paramref name="key" /> не является реализацией
+             алгоритма ГОСТ Р 34.10-2012 512.</exception>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3410EphemeralCryptoServiceProvider">
+      <summary>
+            Алгоритм формирования общих ключей (SharedSecret) на основе 
+            алгоритма ГОСТ Р 34.10,
+            эфимерного ключа и Криптопровайдера.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3410">
+      <summary>
+            Абстрактный базовый класс для всех реализаций алгоритма ГОСТ Р 34.10.
+            Все реализации алгоритма ГОСТ Р 34.10 должны быть унаследованы 
+            от данного класса.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410.#ctor">
+      <summary>
+            Конструктор обьъекта поддерживающего алгоритм ГОСТ Р 34.10.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410.Create">
+      <summary>
+            Создание объекта заданной по умолчанию реализации алгоритма 
+            ГОСТ Р 34.10.
+            </summary>
+      <returns>Объект реализующий алгоритм ГОСТ Р 34.10.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410.Create(System.String)">
+      <summary>
+            Создание объекта с заданной параметром реализацией алгоритма 
+            ГОСТ Р 34.10.
+            </summary>
+      <param name="algName">Название реализации алгоритма 
+            ГОСТ Р 34.10</param>
+      <returns>Объект, реализующий алгоритм ГОСТ Р 34.10.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410.CreateSignature(System.Byte[])">
+      <summary>
+            При перезагрузке в производном классе вычисляет ЭЦП для 
+            значения хэш.
+            </summary>
+      <param name="hash">Хэш для подписи.</param>
+      <returns>Подпись в формате байтового массива.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+            При перазагрузке в производном классе, проверяет подлинность 
+            подписи для значения хэш.
+            </summary>
+      <param name="hash">Проверяемый хэш.</param>
+      <param name="signature">Проверяемая подпись.</param>
+      <returns>true, если подпись верна; 
+            false - иначе.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410.ExportParameters(System.Boolean)">
+      <summary>
+            При перекрытии в производном классе экспортирует параметры в 
+            виде структуры <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />.
+            </summary>
+      <param name="includePrivateParameters">true, 
+            если необходимо включить закрытый ключ; false -
+            иначе.</param>
+      <returns>Параметры алгоритма ГОСТ Р 34.10.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410.ImportParameters(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+            При перекрытии в производном классе импортирует параметры из 
+            структуры <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />.
+            </summary>
+      <param name="parameters">Параметры для алгоритма ГОСТ Р 34.10 в 
+            виде структуры <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410.FromXmlString(System.String)">
+      <summary>
+            Импорт параметров алгоритма из xml представления.
+            </summary>
+      <param name="xmlString">Строка содержащая параметры алгоритма 
+            ГОСТ Р 34.10.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410.ToXmlString(System.Boolean)">
+      <summary>
+            При перезагрузке в порожденном классе, создает XML-строку, 
+            отображающую состояние объекта, реализующего алгоритм ГОСТ Р 34.10.
+            </summary>
+      <param name="includePrivateParameters">true, 
+            чтобы включить private-параметры, false - 
+            иначе.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410.CreateAgree(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+            Создает ключ согласования (SharedSecret ключ).
+            </summary>
+      <param name="alg">Открытый ключ, используемый при создании 
+            ключа согласования.</param>
+      <returns>Ключ согласования.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410.SignatureAlgorithm">
+      <summary>
+            Получение названия алгоритма подписи.
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410.KeyExchangeAlgorithm">
+      <summary>
+            Получение названия алгоритма обмена ключами.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410EphemeralCryptoServiceProvider.#ctor(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+            Инициализация алгоритма с заданными параметрами. 
+            </summary>
+      <param name="basedOn">Параметры алгоритма, на основе которого
+            будет сформирована секретная ключевая пара. Используется
+            OID хэширования и открытого ключа, остальные параметры не 
+            используются.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410EphemeralCryptoServiceProvider.#ctor">
+      <summary>
+            Инициализация алгоритма с параметрами заданными 
+            внутри реализации CSP.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410EphemeralCryptoServiceProvider.CreateSignature(System.Byte[])">
+      <summary>
+            Подпись хэша.
+            </summary>
+      <param name="hash">Хэш.</param>
+      <returns>Функция никогда не завершается.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Всегда, подпись
+            на эфимеральном ключе не поддерживается.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410EphemeralCryptoServiceProvider.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+            Проверка подписи под хэш.
+            </summary>
+      <param name="hash">Значение хэш-функции.</param>
+      <param name="signature">Подпись.</param>
+      <returns>Функция никогда не завершается.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Всегда, проверка подписи
+            на эфимеральном ключе не поддерживается.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410EphemeralCryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>
+            Экспорт параметров алгоритма.
+            </summary>
+      <param name="includePrivateParameters">true, 
+            для экспорта секретного ключа.</param>
+      <returns>Параметры алгоритма.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте
+            секретного ключа.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410EphemeralCryptoServiceProvider.ImportParameters(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+            Импорт параметров алгоритма.
+            </summary>
+      <param name="parameters">Параметры алгоритма.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Всегда.
+            </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410EphemeralCryptoServiceProvider.CreateAgree(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+            Создание ключа согласования.
+            </summary>
+      <param name="alg">Параметры открытого ключа.</param>
+      <returns>Распределенный секрет.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410EphemeralCryptoServiceProvider.KeyHandle">
+      <summary>
+            Получение текущего (не дубликата) HANDLE key.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410EphemeralCryptoServiceProvider.ProviderHandle">
+      <summary>
+            Получение текущего HANDLE провайдера без изменения RefCount.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3410_2012_256">
+      <summary>
+            Абстрактный базовый класс для всех реализаций алгоритма ГОСТ Р 34.10-2012 256
+            Все реализации алгоритма ГОСТ Р 34.10-2012 256 должны быть унаследованы 
+            от данного класса.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256.#ctor">
+      <summary>
+            Конструктор обьъекта поддерживающего алгоритм ГОСТ Р 34.10-2012 256
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256.Create">
+      <summary>
+            Создание объекта заданной по умолчанию реализации алгоритма 
+            ГОСТ Р 34.10-2012 256
+            </summary>
+      <returns>Объект реализующий алгоритм ГОСТ Р 34.10-2012 256</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256.Create(System.String)">
+      <summary>
+            Создание объекта с заданной параметром реализацией алгоритма 
+            ГОСТ Р 34.10-2012 256
+            </summary>
+      <param name="algName">Название реализации алгоритма 
+            ГОСТ Р 34.10-2012 256</param>
+      <returns>Объект, реализующий алгоритм ГОСТ Р 34.10-2012 256</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256.CreateSignature(System.Byte[])">
+      <summary>
+            При перезагрузке в производном классе вычисляет ЭЦП для 
+            значения хэш.
+            </summary>
+      <param name="hash">Хэш для подписи.</param>
+      <returns>Подпись в формате байтового массива.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+            При перазагрузке в производном классе, проверяет подлинность 
+            подписи для значения хэш.
+            </summary>
+      <param name="hash">Проверяемый хэш.</param>
+      <param name="signature">Проверяемая подпись.</param>
+      <returns>true, если подпись верна; 
+            false - иначе.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256.ExportParameters(System.Boolean)">
+      <summary>
+            При перекрытии в производном классе экспортирует параметры в 
+            виде структуры <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />.
+            </summary>
+      <param name="includePrivateParameters">true, 
+            если необходимо включить закрытый ключ; false -
+            иначе.</param>
+      <returns>Параметры алгоритма ГОСТ Р 34.10-2012 256</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256.ImportParameters(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+            При перекрытии в производном классе импортирует параметры из 
+            структуры <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />.
+            </summary>
+      <param name="parameters">Параметры для алгоритма ГОСТ Р 34.10-2012 256 в 
+            виде структуры <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256.FromXmlString(System.String)">
+      <summary>
+            Импорт параметров алгоритма из xml представления.
+            </summary>
+      <param name="xmlString">Строка содержащая параметры алгоритма 
+            ГОСТ Р 34.10-2012 256.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256.ToXmlString(System.Boolean)">
+      <summary>
+            При перезагрузке в порожденном классе, создает XML-строку, 
+            отображающую состояние объекта, реализующего алгоритм ГОСТ Р 34.10-2012 256
+            </summary>
+      <param name="includePrivateParameters">true, 
+            чтобы включить private-параметры, false - 
+            иначе.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256.CreateAgree(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+            Создает ключ согласования (SharedSecret ключ).
+            </summary>
+      <param name="alg">Открытый ключ, используемый при создании 
+            ключа согласования.</param>
+      <returns>Ключ согласования.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256.SignatureAlgorithm">
+      <summary>
+            Получение названия алгоритма подписи.
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256.KeyExchangeAlgorithm">
+      <summary>
+            Получение названия алгоритма обмена ключами.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider">
+      <summary>
+             Реализация алгоритма подписи по ГОСТ Р 34.10-2012 256 через
+             Cryptographic Service Provider (CSP).
+             Этот класс не наследуется.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.#ctor">
+      <summary>
+             Конструктор, создающий объект класса
+             <see cref="T:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider" />.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>
+             Конструктор алгоритма подписи по ГОСТ Р 34.10-2012 256.
+             </summary>
+      <param name="parameters">Параметры алгоритма.</param>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.#ctor(System.IntPtr,System.Security.Cryptography.KeyNumber)">
+      <summary>
+            Конструктор алгоритма подписи по ГОСТ Р 34.10-2012 256.
+            </summary>
+      <param name="hProvHandle">Хендл провайдера</param>
+      <param name="keySpec">Тип ключа</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.CreateSignature(System.Byte[])">
+      <summary>
+             Подпись заданного хэш.
+             </summary>
+      <param name="hash">Хэш для подписи.</param>
+      <returns>Подпись в виде байтового массива.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+             Проверяет подпись для хэш, вычисленного на алгоритме
+             ГОСТ Р 34.11-2012 256.
+             </summary>
+      <param name="hash">Хэш, для проверки подписи.</param>
+      <param name="signature">Подпись, которую необходимо
+             проверить.</param>
+      <returns>true, если подпись верна,
+             false иначе.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.SignData(System.Byte[],System.Object)">
+      <summary>
+             Вычисляет значение хэш для байтового массива и подписывает его.
+             </summary>
+      <param name="buffer">Данные, для которых вычисляется
+             подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм
+             хэширования.</param>
+      <returns>Подпись данных, выполненная по алгоритму
+             ГОСТ Р 34.10-2012 256.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">hashAlg не является
+              алгоритмом хэширования по ГОСТ Р 34.11-2012 256.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.SignData(System.Byte[],System.Int32,System.Int32,System.Object)">
+      <summary>
+             Вычисление значения хэш для указанного интервала из байтового
+             массива и его подпись.
+             </summary>
+      <param name="buffer">Данные, для которых вычисляется
+             подпись.</param>
+      <param name="offset">Смещение от начала массива. </param>
+      <param name="count">Число байтов для подсчета хэша.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм
+             хэширования.</param>
+      <returns>Подпись данных, выполненная по алгоритму
+             ГОСТ Р 34.10-2012 256</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">halg не является
+              алгоритмом хэширования по ГОСТ Р 34.11-2012 256.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.SignData(System.IO.Stream,System.Object)">
+      <summary>
+             Вычисляет значение хэш для данных из потока и подписывает его.
+             </summary>
+      <param name="inputStream">Данные, для которых вычисляется подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм хэширования.</param>
+      <returns>Подпись данных, выполненная по алгоритму ГОСТ-34.10-2012 256.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.SignHash(System.Byte[])">
+      <summary>
+             Вычисляет подпись для заданного значения хэш.
+             </summary>
+      <param name="hash">Подписываемое значение хэш.</param>
+      <returns>Подпись хэша, выполненная по алгоритму
+             ГОСТ Р 34.10-2012 256.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Объект не содержит
+             секретного ключа или хэш имееет неправильный размер.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.VerifyData(System.Byte[],System.Object,System.Byte[])">
+      <summary>
+             Проверка подписи для указанных данных.
+             </summary>
+      <param name="buffer">Данные, для которых проверяется
+             подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм вычисления
+             хэш по ГОСТ Р 34.11-2012 256.</param>
+      <param name="signature">Подпись, которую необходимо
+             проверить.</param>
+      <returns>true, если подпись подлинна,
+             false - иначе.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">halg не является
+              алгоритмом хэширования по ГОСТ Р 34.11-2012 256.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.VerifyData(System.IO.Stream,System.Object,System.Byte[])">
+      <summary>
+             Проверка подписи для указанных данных.
+             </summary>
+      <param name="inputStream">Данные, для которых проверяется
+             подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм вычисления
+             хэш по ГОСТ Р 34.11-2012 256.</param>
+      <param name="signature">Подпись, подлинность которой необходимо
+             проверить.</param>
+      <returns>true, если продпись подлинна,
+             false - иначе.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">halg не является
+             алгоритмом хэширования по ГОСТ Р 34.11-2012 256.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.VerifyHash(System.Byte[],System.Byte[])">
+      <summary>
+             Проверяет подлинность подписи для указанного значения хэш.
+             </summary>
+      <param name="hash">Хэш, для которого проверяется
+             подпись.</param>
+      <param name="signature">Подпись, подлинность которой
+             необходимо проверить.</param>
+      <returns>true, если продпись подлинна,
+             false - иначе.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.ExportCspBlob(System.Boolean)">
+      <summary>
+             Экспортирует параметры алгоритма в BLOB.
+             </summary>
+      <param name="includePrivateParameters">Для экспорта секретного
+             ключа.</param>
+      <returns>BLOB со структурой описанной для CSP.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте секретного
+             ключа.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.ExportCspBlob(System.Boolean,System.Boolean)">
+      <summary>
+             Экспортирует параметры алгоритма в BLOB.
+             Отрытый ключ представляется парой (x,b), где байт b равен 2,
+             если координата y чётная и 3 в противном случае.
+             </summary>
+      <param name="includePrivateParameters">Для экспорта секретного
+             ключа.</param>
+      <param name="isPublicCompress">(флаг CRYPT_PUBLICCOMPRESS)
+             Если isPublicCompress == true, отрытый ключ представляется парой (x,b),
+             где байт b равен 2, если координата y чётная и 3 в противном случае.</param>
+      <returns>BLOB со структурой описанной для CSP.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте секретного
+             ключа.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.ImportCspBlob(System.Byte[])">
+      <summary>
+             Импорт параметров алгоритма ГОСТ Р 34.10-2012 256.
+             </summary>
+      <param name="rawData">Байтовый массив, содержащий ключ
+             алгоритма ГОСТ Р 34.10-2012 256.</param>.
+            
+             <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте секретного
+             ключа.</exception></member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>
+             Экспорт параметров <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />
+             алгоритма ГОСТ Р 34.10-2012 256 в CSP.
+             </summary>
+      <param name="includePrivateParameters">true,
+             чтобы включить секретный ключ, false - для
+             экспорта только открытого ключа и его параметров.</param>
+      <returns>Параметры в виде структуры
+             <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" /></returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Export" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.ImportParameters(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+             Импорт параметров <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />
+             алгоритма ГОСТ Р 34.10-2012 256.
+             </summary>
+      <param name="parameters">Параметры алгоритма
+             ГОСТ Р 10.34.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При импорте секретного
+             ключа.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Import" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.CreateAgree(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+             Создание ключа согласования (agree ключа).
+             </summary>
+      <param name="alg">Открытый ключ получателя.</param>
+      <returns>Ключ согласования <see cref="T:CryptoPro.Sharpei.GostSharedSecretAlgorithm" />
+             для шифрования ключевой информации.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.SetContainerPassword(System.Security.SecureString)">
+      <summary>
+             Установка пароля доступа к контейнеру.
+             </summary>
+      <param name="password">Пароль доступа к контейнеру.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.PreloadContainer">
+      <summary>
+             Предварительная загрузка контейнера в память.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.SelectContainer(System.Boolean,System.Boolean,System.IntPtr)">
+      <summary>
+             Вывод диалогового окна выбора контейнера и получение
+             имени выбранного контейнера
+             </summary>
+      <param name="fullyQualifiedContainerName">Вернуть полностью
+             кваллифицированное имя контейнера.</param>
+      <param name="machine">Использовать локальное хранилище
+             компьютера (true) или пользователя
+             (true).</param>
+      <param name="parent">HWND родительского окна или IntPtr.Zero,
+             для выдачи окна без родителя.</param>
+      <returns>Строку имени контейнера.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.CspKeyContainerInfo">
+      <summary>
+             Получает информацию о CSP <see cref="P:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.CspKeyContainerInfo" />,
+             в котором хранится ключевая пара.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.KeySize">
+      <summary>
+             Возвращает длину ключа, используемого в алгоритме, в битах.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.PersistKeyInCsp">
+      <summary>
+             Возвращает или устанавливает флаг, указывающий, должен ли ключ
+             храниться в CSP.
+             </summary>
+      <returns>true, если ключ должен храниться в CSP,
+             false - иначе.
+             </returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Delete" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.PublicOnly">
+      <summary>
+             Получает значение, указывающее, не содержит ли объект
+             <see cref="T:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider" />
+             только открытый ключ.
+             </summary>
+      <returns>true, если
+             <see cref="T:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider" /> содержит только
+             открытый ключ, false - иначе.
+             </returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.UseMachineKeyStore">
+      <summary>
+             Возвращает или устанавливает флаг того, что ключ должен храниться
+             в STORE ключей компьютера, а не в профиле пользователя.
+             </summary>
+      <returns>true, если ключ должен храниться в банке ключей
+             компьютера, false - иначе.
+             </returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.ProviderHandle">
+      <summary>
+             Получение текущего HANDLE провайдера без изменения RefCount.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.KeyHandle">
+      <summary>
+             Получение текущего (не дубликата) HANDLE ключа.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.CipherOid">
+      <summary>
+            Параметры шифрования
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256CryptoServiceProvider.ContainerCertificate">
+      <summary>
+             Получение/установка сертификата в конейнер.
+             </summary>
+      <exception cref="T:System.ArgumentNullException">
+            При установки значения null.
+        </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+      <returns>Возвращается хранимый сертификат или null,
+             если сертификат в контейнере отсутствует.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3410_2012_256EphemeralCryptoServiceProvider">
+      <summary>
+             Алгоритм формирования общих ключей (SharedSecret) на основе
+             алгоритма ГОСТ Р 34.10-2012 256,
+             эфимерного ключа и Криптопровайдера.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256EphemeralCryptoServiceProvider.#ctor(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+            Инициализация алгоритма с заданными параметрами.
+            </summary>
+      <param name="basedOn">Параметры алгоритма, на основе которого
+            будет сформирована секретная ключевая пара. Используется
+            OID хэширования и открытого ключа, остальные параметры не
+            используются.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256EphemeralCryptoServiceProvider.#ctor">
+      <summary>
+            Инициализация алгоритма с параметрами заданными
+            внутри реализации CSP.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256EphemeralCryptoServiceProvider.CreateSignature(System.Byte[])">
+      <summary>
+             Подпись хэша.
+             </summary>
+      <param name="hash">Хэш.</param>
+      <returns>Функция никогда не завершается.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Всегда, подпись
+             на эфимеральном ключе не поддерживается.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256EphemeralCryptoServiceProvider.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+             Проверка подписи под хэш.
+             </summary>
+      <param name="hash">Значение хэш-функции.</param>
+      <param name="signature">Подпись.</param>
+      <returns>Функция никогда не завершается.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Всегда, проверка подписи
+             на эфимеральном ключе не поддерживается.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256EphemeralCryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>
+             Экспорт параметров алгоритма.
+             </summary>
+      <param name="includePrivateParameters">true,
+             для экспорта секретного ключа.</param>
+      <returns>Параметры алгоритма.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте
+             секретного ключа.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256EphemeralCryptoServiceProvider.ImportParameters(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+             Импорт параметров алгоритма.
+             </summary>
+      <param name="parameters">Параметры алгоритма.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Всегда.
+             </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_256EphemeralCryptoServiceProvider.CreateAgree(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+             Создание ключа согласования.
+             </summary>
+      <param name="alg">Параметры открытого ключа.</param>
+      <returns>Распределенный секрет.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256EphemeralCryptoServiceProvider.KeyHandle">
+      <summary>
+             Получение текущего (не дубликата) HANDLE key.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_256EphemeralCryptoServiceProvider.ProviderHandle">
+      <summary>
+             Получение текущего HANDLE провайдера без изменения RefCount.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3410_2012_512">
+      <summary>
+             Абстрактный базовый класс для всех реализаций алгоритма ГОСТ Р 34.10-2012 512.
+             Все реализации алгоритма ГОСТ Р 34.10-2012 512 должны быть унаследованы
+             от данного класса.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512.#ctor">
+      <summary>
+             Конструктор обьъекта поддерживающего алгоритм ГОСТ Р 34.10-2012 512.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512.Create">
+      <summary>
+             Создание объекта заданной по умолчанию реализации алгоритма
+             ГОСТ Р 34.10-2012 512.
+             </summary>
+      <returns>Объект реализующий алгоритм ГОСТ Р 34.10-2012 512.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512.Create(System.String)">
+      <summary>
+             Создание объекта с заданной параметром реализацией алгоритма
+             ГОСТ Р 34.10-2012 512.
+             </summary>
+      <param name="algName">Название реализации алгоритма
+             ГОСТ Р 34.10-2012 512</param>
+      <returns>Объект, реализующий алгоритм ГОСТ Р 34.10.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512.CreateSignature(System.Byte[])">
+      <summary>
+             При перезагрузке в производном классе вычисляет ЭЦП для
+             значения хэш.
+             </summary>
+      <param name="hash">Хэш для подписи.</param>
+      <returns>Подпись в формате байтового массива.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+             При перазагрузке в производном классе, проверяет подлинность
+             подписи для значения хэш.
+             </summary>
+      <param name="hash">Проверяемый хэш.</param>
+      <param name="signature">Проверяемая подпись.</param>
+      <returns>true, если подпись верна;
+             false - иначе.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512.ExportParameters(System.Boolean)">
+      <summary>
+             При перекрытии в производном классе экспортирует параметры в
+             виде структуры <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />.
+             </summary>
+      <param name="includePrivateParameters">true,
+             если необходимо включить закрытый ключ; false -
+             иначе.</param>
+      <returns>Параметры алгоритма ГОСТ Р 34.10-2012 512.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512.ImportParameters(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+             При перекрытии в производном классе импортирует параметры из
+             структуры <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />.
+             </summary>
+      <param name="parameters">Параметры для алгоритма ГОСТ Р 34.10-2012 512 в
+             виде структуры <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512.FromXmlString(System.String)">
+      <summary>
+             Импорт параметров алгоритма из xml представления.
+             </summary>
+      <param name="xmlString">Строка содержащая параметры алгоритма
+             ГОСТ Р 34.10-2012 512.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512.ToXmlString(System.Boolean)">
+      <summary>
+             При перезагрузке в порожденном классе, создает XML-строку,
+             отображающую состояние объекта, реализующего алгоритм ГОСТ Р 34.10-2012 512.
+             </summary>
+      <param name="includePrivateParameters">true,
+             чтобы включить private-параметры, false -
+             иначе.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512.CreateAgree(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+             Создает ключ согласования (SharedSecret ключ).
+             </summary>
+      <param name="alg">Открытый ключ, используемый при создании
+             ключа согласования.</param>
+      <returns>Ключ согласования.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512.SignatureAlgorithm">
+      <summary>
+             Получение названия алгоритма подписи.
+             </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512.KeyExchangeAlgorithm">
+      <summary>
+             Получение названия алгоритма обмена ключами.
+             </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider">
+      <summary>
+             Реализация алгоритма подписи по ГОСТ Р 34.10-2012 512 через
+             Cryptographic Service Provider (CSP).
+             Этот класс не наследуется.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.#ctor">
+      <summary>
+             Конструктор, создающий объект класса
+             <see cref="T:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider" />.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>
+             Конструктор алгоритма подписи по ГОСТ Р 34.10-2012 512.
+             </summary>
+      <param name="parameters">Параметры алгоритма.</param>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.#ctor(System.IntPtr,System.Security.Cryptography.KeyNumber)">
+      <summary>
+            Конструктор алгоритма подписи по ГОСТ Р 34.10-2012 512.
+            </summary>
+      <param name="hProvHandle">Хендл провайдера</param>
+      <param name="keySpec">Тип ключа</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.CreateSignature(System.Byte[])">
+      <summary>
+             Подпись заданного хэш.
+             </summary>
+      <param name="hash">Хэш для подписи.</param>
+      <returns>Подпись в виде байтового массива.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+             Проверяет подпись для хэш, вычисленного на алгоритме
+             ГОСТ Р 34.11-2012 512.
+             </summary>
+      <param name="hash">Хэш, для проверки подписи.</param>
+      <param name="signature">Подпись, которую необходимо
+             проверить.</param>
+      <returns>true, если подпись верна,
+             false иначе.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.SignData(System.Byte[],System.Object)">
+      <summary>
+             Вычисляет значение хэш для байтового массива и подписывает его.
+             </summary>
+      <param name="buffer">Данные, для которых вычисляется
+             подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм
+             хэширования.</param>
+      <returns>Подпись данных, выполненная по алгоритму
+             ГОСТ Р 34.10-2012 512.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">hashAlg не является
+              алгоритмом хэширования по ГОСТ Р 34.11-2012 512.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.SignData(System.Byte[],System.Int32,System.Int32,System.Object)">
+      <summary>
+             Вычисление значения хэш для указанного интервала из байтового
+             массива и его подпись.
+             </summary>
+      <param name="buffer">Данные, для которых вычисляется
+             подпись.</param>
+      <param name="offset">Смещение от начала массива. </param>
+      <param name="count">Число байтов для подсчета хэша.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм
+             хэширования.</param>
+      <returns>Подпись данных, выполненная по алгоритму
+             ГОСТ Р 34.10-2012 512</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">halg не является
+              алгоритмом хэширования по ГОСТ Р 34.11-2012 512.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.SignData(System.IO.Stream,System.Object)">
+      <summary>
+             Вычисляет значение хэш для данных из потока и подписывает его.
+             </summary>
+      <param name="inputStream">Данные, для которых вычисляется подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм хэширования.</param>
+      <returns>Подпись данных, выполненная по алгоритму ГОСТ-34.10-2012 512.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.SignHash(System.Byte[])">
+      <summary>
+             Вычисляет подпись для заданного значения хэш.
+             </summary>
+      <param name="hash">Подписываемое значение хэш.</param>
+      <returns>Подпись хэша, выполненная по алгоритму
+             ГОСТ Р 34.10-2012 512.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Объект не содержит
+             секретного ключа или хэш имееет неправильный размер.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.VerifyData(System.Byte[],System.Object,System.Byte[])">
+      <summary>
+             Проверка подписи для указанных данных.
+             </summary>
+      <param name="buffer">Данные, для которых проверяется
+             подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм вычисления
+             хэш по ГОСТ Р 34.11-2012 512.</param>
+      <param name="signature">Подпись, которую необходимо
+             проверить.</param>
+      <returns>true, если подпись подлинна,
+             false - иначе.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">halg не является
+              алгоритмом хэширования по ГОСТ Р 34.11-2012 512.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.VerifyData(System.IO.Stream,System.Object,System.Byte[])">
+      <summary>
+             Проверка подписи для указанных данных.
+             </summary>
+      <param name="inputStream">Данные, для которых проверяется
+             подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм вычисления
+             хэш по ГОСТ Р 34.11-2012 512.</param>
+      <param name="signature">Подпись, подлинность которой необходимо
+             проверить.</param>
+      <returns>true, если продпись подлинна,
+             false - иначе.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">halg не является
+             алгоритмом хэширования по ГОСТ Р 34.11-2012 512.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.VerifyHash(System.Byte[],System.Byte[])">
+      <summary>
+             Проверяет подлинность подписи для указанного значения хэш.
+             </summary>
+      <param name="hash">Хэш, для которого проверяется
+             подпись.</param>
+      <param name="signature">Подпись, подлинность которой
+             необходимо проверить.</param>
+      <returns>true, если продпись подлинна,
+             false - иначе.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.ExportCspBlob(System.Boolean)">
+      <summary>
+             Экспортирует параметры алгоритма в BLOB.
+             </summary>
+      <param name="includePrivateParameters">Для экспорта секретного
+             ключа.</param>
+      <returns>BLOB со структурой описанной для CSP.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте секретного
+             ключа.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.ExportCspBlob(System.Boolean,System.Boolean)">
+      <summary>
+             Экспортирует параметры алгоритма в BLOB.
+             Отрытый ключ представляется парой (x,b), где байт b равен 2,
+             если координата y чётная и 3 в противном случае.
+             </summary>
+      <param name="includePrivateParameters">Для экспорта секретного
+             ключа.</param>
+      <param name="isPublicCompress">(флаг CRYPT_PUBLICCOMPRESS)
+             Если isPublicCompress == true, отрытый ключ представляется парой (x,b),
+             где байт b равен 2, если координата y чётная и 3 в противном случае.</param>
+      <returns>BLOB со структурой описанной для CSP.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте секретного
+             ключа.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.ImportCspBlob(System.Byte[])">
+      <summary>
+             Импорт параметров алгоритма ГОСТ Р 34.10-2012 512.
+             </summary>
+      <param name="rawData">Байтовый массив, содержащий ключ
+             алгоритма ГОСТ Р 34.10-2012 512.</param>.
+            
+             <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте секретного
+             ключа.</exception></member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>
+             Экспорт параметров <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />
+             алгоритма ГОСТ Р 34.10-2012 512 в CSP.
+             </summary>
+      <param name="includePrivateParameters">true,
+             чтобы включить секретный ключ, false - для
+             экспорта только открытого ключа и его параметров.</param>
+      <returns>Параметры в виде структуры
+             <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" /></returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Export" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.ImportParameters(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+             Импорт параметров <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" />
+             алгоритма ГОСТ Р 34.10-2012 512.
+             </summary>
+      <param name="parameters">Параметры алгоритма
+             ГОСТ Р 10.34.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При импорте секретного
+             ключа.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Import" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.CreateAgree(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+             Создание ключа согласования (agree ключа).
+             </summary>
+      <param name="alg">Открытый ключ получателя.</param>
+      <returns>Ключ согласования <see cref="T:CryptoPro.Sharpei.GostSharedSecretAlgorithm" />
+             для шифрования ключевой информации.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.SetContainerPassword(System.Security.SecureString)">
+      <summary>
+             Установка пароля доступа к контейнеру.
+             </summary>
+      <param name="password">Пароль доступа к контейнеру.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.PreloadContainer">
+      <summary>
+             Предварительная загрузка контейнера в память.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.SelectContainer(System.Boolean,System.Boolean,System.IntPtr)">
+      <summary>
+             Вывод диалогового окна выбора контейнера и получение
+             имени выбранного контейнера
+             </summary>
+      <param name="fullyQualifiedContainerName">Вернуть полностью
+             кваллифицированное имя контейнера.</param>
+      <param name="machine">Использовать локальное хранилище
+             компьютера (true) или пользователя
+             (true).</param>
+      <param name="parent">HWND родительского окна или IntPtr.Zero,
+             для выдачи окна без родителя.</param>
+      <returns>Строку имени контейнера.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.CspKeyContainerInfo">
+      <summary>
+             Получает информацию о CSP <see cref="P:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.CspKeyContainerInfo" />,
+             в котором хранится ключевая пара.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.KeySize">
+      <summary>
+             Возвращает длину ключа, используемого в алгоритме, в битах.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.PersistKeyInCsp">
+      <summary>
+             Возвращает или устанавливает флаг, указывающий, должен ли ключ
+             храниться в CSP.
+             </summary>
+      <returns>true, если ключ должен храниться в CSP,
+             false - иначе.
+             </returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Delete" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.PublicOnly">
+      <summary>
+             Получает значение, указывающее, не содержит ли объект
+             <see cref="T:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider" />
+             только открытый ключ.
+             </summary>
+      <returns>true, если
+             <see cref="T:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider" /> содержит только
+             открытый ключ, false - иначе.
+             </returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.UseMachineKeyStore">
+      <summary>
+             Возвращает или устанавливает флаг того, что ключ должен храниться
+             в STORE ключей компьютера, а не в профиле пользователя.
+             </summary>
+      <returns>true, если ключ должен храниться в банке ключей
+             компьютера, false - иначе.
+             </returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.ProviderHandle">
+      <summary>
+             Получение текущего HANDLE провайдера без изменения RefCount.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.KeyHandle">
+      <summary>
+             Получение текущего (не дубликата) HANDLE ключа.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.CipherOid">
+      <summary>
+            Параметры шифрования
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512CryptoServiceProvider.ContainerCertificate">
+      <summary>
+             Получение/установка сертификата в конейнер.
+             </summary>
+      <exception cref="T:System.ArgumentNullException">
+            При установки значения null.
+        </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+      <returns>Возвращается хранимый сертификат или null,
+             если сертификат в контейнере отсутствует.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3410_2012_512EphemeralCryptoServiceProvider">
+      <summary>
+             Алгоритм формирования общих ключей (SharedSecret) на основе
+             алгоритма ГОСТ Р 34.10-2012 512,
+             эфимерного ключа и Криптопровайдера.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512EphemeralCryptoServiceProvider.#ctor(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+            Инициализация алгоритма с заданными параметрами.
+            </summary>
+      <param name="basedOn">Параметры алгоритма, на основе которого
+            будет сформирована секретная ключевая пара. Используется
+            OID хэширования и открытого ключа, остальные параметры не
+            используются.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512EphemeralCryptoServiceProvider.#ctor">
+      <summary>
+            Инициализация алгоритма с параметрами заданными
+            внутри реализации CSP.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512EphemeralCryptoServiceProvider.CreateSignature(System.Byte[])">
+      <summary>
+             Подпись хэша.
+             </summary>
+      <param name="hash">Хэш.</param>
+      <returns>Функция никогда не завершается.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Всегда, подпись
+             на эфимеральном ключе не поддерживается.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512EphemeralCryptoServiceProvider.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+             Проверка подписи под хэш.
+             </summary>
+      <param name="hash">Значение хэш-функции.</param>
+      <param name="signature">Подпись.</param>
+      <returns>Функция никогда не завершается.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Всегда, проверка подписи
+             на эфимеральном ключе не поддерживается.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512EphemeralCryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>
+             Экспорт параметров алгоритма.
+             </summary>
+      <param name="includePrivateParameters">true,
+             для экспорта секретного ключа.</param>
+      <returns>Параметры алгоритма.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте
+             секретного ключа.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512EphemeralCryptoServiceProvider.ImportParameters(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+             Импорт параметров алгоритма.
+             </summary>
+      <param name="parameters">Параметры алгоритма.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Всегда.
+             </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410_2012_512EphemeralCryptoServiceProvider.CreateAgree(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+             Создание ключа согласования.
+             </summary>
+      <param name="alg">Параметры открытого ключа.</param>
+      <returns>Распределенный секрет.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512EphemeralCryptoServiceProvider.KeyHandle">
+      <summary>
+             Получение текущего (не дубликата) HANDLE key.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410_2012_512EphemeralCryptoServiceProvider.ProviderHandle">
+      <summary>
+             Получение текущего HANDLE провайдера без изменения RefCount.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3411_2012_256">
+      <summary>
+             Абстрактный базовый класс для всех реализаций алгоритма ГОСТ Р 34.11-2012 256.
+             Все реализации алгоритма ГОСТ Р 34.11-2012 256 должны быть отнаследованы от данного класса.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256.#ctor">
+      <summary>
+             Конструктор объекта, поддерживающего алгоритм ГОСТ Р 34.11-2012 256.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256.Create">
+      <summary>
+             Создание объекта заданной по умолчанию реализации алгоритма ГОСТ Р 34.11-2012 256.
+             </summary>
+      <returns>Объект, реализующий алгоритм ГОСТ Р 34.11-2012 256.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256.Create(System.String)">
+      <summary>
+             Создание объекта заданной параметром реализации алгоритма ГОСТ Р 34.11-2012 256.
+             </summary>
+      <param name="hashName">Имя реализации алгоритма ГОСТ Р 34.11-2012 256</param>
+      <returns>Объект реализующий алгоритм ГОСТ Р 34.11-2012 256.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3411_2012_256CryptoServiceProvider">
+      <summary>
+             Реализация алгоритма хэширования по ГОСТ Р 34.11-2012 256 через
+             Cryptographic Service Provider (CSP). Наследование от данного класса
+             запрещено.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256CryptoServiceProvider.#ctor">
+      <summary>
+            Создает новый объект класса <see cref="T:CryptoPro.Sharpei.Gost3411_2012_256CryptoServiceProvider" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256CryptoServiceProvider.Initialize">
+      <summary>
+            Инициализирует объект класса Gost3411_2012_256CryptoServiceProvider.
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411_2012_256CryptoServiceProvider.HashHandle">
+      <summary>
+             Получение текущего (не дубликата) HANDLE хэша.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3411_2012_256HMAC">
+      <summary>
+             Вычисляет HMAC на алгоритме вычисления хэш ГОСТ Р 34.11-2012 256.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256HMAC.#ctor">
+      <summary>
+             Создание нового объекта класса <see cref="T:CryptoPro.Sharpei.Gost3411_2012_256HMAC" />.
+             </summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычисления
+             HMAC не поддерживается ни одним из установленных
+             провайдеров.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256HMAC.#ctor(System.Byte[])">
+      <summary>
+             Создание нового объекта класса <see cref="T:CryptoPro.Sharpei.Gost3411_2012_256HMAC" />
+             с заданным ключом.
+             </summary>
+      <param name="key">Ключ для вычисления HMAC на основе алгоритма
+             ГОСТ Р 34.11-2012 256.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычистления
+             HMAC не поддерживается ни одним из установленных
+             провайдеров; запрещен импорт "чистых" симметричных ключей.
+             </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256HMAC.#ctor(CryptoPro.Sharpei.Gost28147)">
+      <summary>
+             Создание нового объекта класса <see cref="T:CryptoPro.Sharpei.Gost3411_2012_256HMAC" />
+             с заданным ключом.
+             </summary>
+      <param name="alg">Объект, содержащий ключ.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычистления
+             HMAC не поддерживается ни одним из установленных
+             провайдеров.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256HMAC.HashCore(System.Byte[],System.Int32,System.Int32)">
+      <summary>
+             Шаг вычисления HMAC.
+             </summary>
+      <param name="rgb">Входные данные. </param>
+      <param name="ib">Смещение от начала байтового массива. </param>
+      <param name="cb">Количество считываемых байтов. </param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256HMAC.HashFinal">
+      <summary>
+             Завершение вычисления HMAC и получение результата.
+             </summary>
+      <returns>Вычисленное значение HMAC в виде байтового массива.
+             </returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256HMAC.Initialize">
+      <summary>
+            Инициализирует стандартное вычисление HMAC.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_256HMAC.Dispose(System.Boolean)">
+      <summary>
+             Освобождает неуправляемые ресурсы объекта
+             <see cref="T:CryptoPro.Sharpei.Gost3411_2012_256HMAC" />, и, при
+             необходимости, управляемые.
+             </summary>
+      <param name="disposing">true, если разрешен
+             доступ к другим объектам, false - другие объекты
+             могут быть уничтожены.
+             </param>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411_2012_256HMAC.HashHandle">
+      <summary>
+             Получение текущего (не дубликата) HANDLE HASH.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411_2012_256HMAC.KeyAlgorithm">
+      <summary>
+             Получение/установка алгоритма (ключа) для подсчета HMAC.
+             </summary>
+      <returns>Алгоритм (ключ) для подсчета HMAC.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411_2012_256HMAC.Key">
+      <summary>
+             Устанавливает или получает ключ, используемый алгоритмом.
+             </summary>
+      <returns>"чистый" ключ для подсчета HMAC.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+             Запрещен экспорт (импорт) "чистых" симметричных ключей
+             при получении (установке).
+             </exception>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3411_2012_512">
+      <summary>
+             Абстрактный базовый класс для всех реализаций алгоритма ГОСТ Р 34.11-2012 512.
+             Все реализации алгоритма ГОСТ Р 34.11-2012 512 должны быть отнаследованы от данного класса.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512.#ctor">
+      <summary>
+             Конструктор объекта, поддерживающего алгоритм ГОСТ Р 34.11-2012 512.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512.Create">
+      <summary>
+             Создание объекта заданной по умолчанию реализации алгоритма ГОСТ Р 34.11-2012 512.
+             </summary>
+      <returns>Объект, реализующий алгоритм ГОСТ Р 34.11-2012 512.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512.Create(System.String)">
+      <summary>
+             Создание объекта заданной параметром реализации алгоритма ГОСТ Р 34.11-2012 512.
+             </summary>
+      <param name="hashName">Имя реализации алгоритма ГОСТ Р 34.11-2012 512</param>
+      <returns>Объект реализующий алгоритм ГОСТ Р 34.11-2012 512.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3411_2012_512CryptoServiceProvider">
+      <summary>
+             Реализация алгоритма хэширования по ГОСТ Р 34.11-2012 512 через
+             Cryptographic Service Provider (CSP). Наследование от данного класса
+             запрещено.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512CryptoServiceProvider.#ctor">
+      <summary>
+            Создает новый объект класса <see cref="T:CryptoPro.Sharpei.Gost3411_2012_512CryptoServiceProvider" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512CryptoServiceProvider.Initialize">
+      <summary>
+            Инициализирует объект класса Gost3411_2012_512CryptoServiceProvider.
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411_2012_512CryptoServiceProvider.HashHandle">
+      <summary>
+             Получение текущего (не дубликата) HANDLE хэша.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3411_2012_512HMAC">
+      <summary>
+             Вычисляет HMAC на алгоритме вычисления хэш ГОСТ Р 34.11-2012 512.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512HMAC.#ctor">
+      <summary>
+             Создание нового объекта класса <see cref="T:CryptoPro.Sharpei.Gost3411_2012_512HMAC" />.
+             </summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычисления
+             HMAC не поддерживается ни одним из установленных
+             провайдеров.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512HMAC.#ctor(System.Byte[])">
+      <summary>
+             Создание нового объекта класса <see cref="T:CryptoPro.Sharpei.Gost3411_2012_512HMAC" />
+             с заданным ключом.
+             </summary>
+      <param name="key">Ключ для вычисления HMAC на основе алгоритма
+             ГОСТ Р 34.11-2012 512.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычистления
+             HMAC не поддерживается ни одним из установленных
+             провайдеров; запрещен импорт "чистых" симметричных ключей.
+             </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512HMAC.#ctor(CryptoPro.Sharpei.Gost28147)">
+      <summary>
+             Создание нового объекта класса <see cref="T:CryptoPro.Sharpei.Gost3411_2012_512HMAC" />
+             с заданным ключом.
+             </summary>
+      <param name="alg">Объект, содержащий ключ.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычистления
+             HMAC не поддерживается ни одним из установленных
+             провайдеров.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512HMAC.HashCore(System.Byte[],System.Int32,System.Int32)">
+      <summary>
+             Шаг вычисления HMAC.
+             </summary>
+      <param name="rgb">Входные данные. </param>
+      <param name="ib">Смещение от начала байтового массива. </param>
+      <param name="cb">Количество считываемых байтов. </param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512HMAC.HashFinal">
+      <summary>
+             Завершение вычисления HMAC и получение результата.
+             </summary>
+      <returns>Вычисленное значение HMAC в виде байтового массива.
+             </returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512HMAC.Initialize">
+      <summary>
+            Инициализирует стандартное вычисление HMAC.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411_2012_512HMAC.Dispose(System.Boolean)">
+      <summary>
+             Освобождает неуправляемые ресурсы объекта
+             <see cref="T:CryptoPro.Sharpei.Gost3411_2012_512HMAC" />, и, при
+             необходимости, управляемые.
+             </summary>
+      <param name="disposing">true, если разрешен
+             доступ к другим объектам, false - другие объекты
+             могут быть уничтожены.
+             </param>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411_2012_512HMAC.HashHandle">
+      <summary>
+             Получение текущего (не дубликата) HANDLE HASH.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411_2012_512HMAC.KeyAlgorithm">
+      <summary>
+             Получение/установка алгоритма (ключа) для подсчета HMAC.
+             </summary>
+      <returns>Алгоритм (ключ) для подсчета HMAC.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411_2012_512HMAC.Key">
+      <summary>
+             Устанавливает или получает ключ, используемый алгоритмом.
+             </summary>
+      <returns>"чистый" ключ для подсчета HMAC.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+             Запрещен экспорт (импорт) "чистых" симметричных ключей
+             при получении (установке).
+             </exception>
+    </member>
+    <member name="T:CryptoPro.Sharpei.GostKeyTransport">
+      <summary>
+            Зашифрованная для передачи ключевая информация.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.GostKeyTransport.SessionEncryptedKey">
+      <summary>
+            Зашифрованный сессионный ключ.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.GostKeyTransport.TransportParameters">
+      <summary>
+            Параметры алгоритма ГОСТ Р 34.10.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyTransport.Encode">
+      <summary>
+            Преобразует объект класса <see cref="T:CryptoPro.Sharpei.GostKeyTransport" /> 
+            в байтовый массив.
+            </summary>
+      <returns>Данные обмена ключами в виде байтового массива.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyTransport.Decode(System.Byte[])">
+      <summary>
+            Восстанавливает объект класса <see cref="T:CryptoPro.Sharpei.GostKeyTransport" /> 
+            из байтового массива.
+            </summary>
+      <param name="data">Данные для обмена в виде байтового 
+            массива.</param>
+      <returns>Данные для обмена в объекта класса 
+            <see cref="T:CryptoPro.Sharpei.GostKeyTransport" />.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost28147">
+      <summary>
+            Абстрактный базовый класс для всех реализаций симметричного 
+            шифрования по ГОСТ 28147.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147.#ctor">
+      <summary>
+            Конструктор объекта класса симметричного шифрования по ГОСТ 
+            28147.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147.Create">
+      <summary>
+            Создание объекта, реализуещего алгоритм шифрования ГОСТ-28147.
+            </summary>
+      <returns>Криптографический объект, реализующий алгоритм ГОСТ 
+            28147.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147.Create(System.String)">
+      <summary>
+            Создание объекта, реализующего алгоритм шифрования ГОСТ-28147 
+            с заданным именем реализации.
+            </summary>
+      <param name="algName">Имя реализации алгоритма.</param>
+      <returns>Криптографический объект, реализующий алгоритм 
+            ГОСТ 28147.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147.Wrap(System.Security.Cryptography.SymmetricAlgorithm,CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Шифрует секретный ключ.
+            </summary>
+      <param name="alg">Объект класса <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />, 
+            содержащий секретный ключ. </param>
+      <param name="method">Метод зашифрования ключа.</param>
+      <returns>Зашифрованный ключ.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147.Unwrap(System.Byte[],CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Расшифровывает секретный ключ.
+            </summary>
+      <param name="wrapped">Зашифрованный ключ.</param>
+      <param name="method">Метод зашифрования ключа.</param>
+      <returns>Объект класса <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />, содержащий 
+            секретный ключ.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147.ComputeHash(System.Security.Cryptography.HashAlgorithm)">
+      <summary>
+            Хэширует секретный ключ.
+            </summary>
+      <param name="hash">Класс, реализующий функцию хэширования.</param>
+      <returns>Хэш-значение секретного ключа</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost28147CryptoServiceProvider">
+      <summary>
+             Реализация алгоритма шифрования по ГОСТ 28147 через
+             Cryptographic Service Provider (CSP). Класс не может быть унаследован.
+             </summary>,
+             </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.#ctor">
+      <summary>
+             Создание объекта Gost28147CryptoServiceProvider.
+             </summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Не установлен ни один
+             CSP поддерживающий алгоритм шифрования по ГОСТ 28147.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.#ctor(System.IntPtr,System.IntPtr)">
+      <summary>
+             Создание объекта симметричного шифрования по HANDLE ключа.
+             </summary>
+      <param name="keyHandle">HANDLE симметричного ключа.</param>
+      <param name="providerHandle">HANDLE провайдера.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.ArgumentException">Параметр keyHandle
+             содержит ключ не алгоритма ГОСТ 28147.
+             </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>
+             Создание объекта криптографического преобразования - расшифрования
+             - с заданным ключом
+             (<paramref name="rgbKey" />) и синхропосылкой
+             (<paramref name="rgbIV" />)
+             </summary>
+      <param name="rgbKey">Ключ расшифрования в чистом виде. Длина ключа
+             должна составлять 32 байта. Если ключ не задан он будет
+             сгенерирован с ДСЧ.</param>
+      <param name="rgbIV">Синхропосылка. Длина синхропосылки должна быть
+             не менее 8 байт.
+             Если синхропосылка отсутствует, то она будет сгенерирована с
+             ДСЧ.</param>
+      <returns>Объект симметричного расшифрования.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">ModeValue ==
+             <see cref="T:System.Security.Cryptography.CipherMode" />.CTS; при <see cref="T:System.Security.Cryptography.PaddingMode" /> не
+             соответствующем ModeValue; для режима CFB при неправильно
+             заданном FeedbackSizeValue; при недостаточной длине
+             rgbIV в соответствующих режимах; при запрете
+             импорта "чистых" симметричных ключей.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.CreateDecryptor">
+      <summary>
+             Создание объекта криптографического преобразования -
+             расшифрования.
+             </summary>
+      <returns>Объект симметричного расшифрования.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">ModeValue ==
+             <see cref="T:System.Security.Cryptography.CipherMode" />.CTS; при <see cref="T:System.Security.Cryptography.PaddingMode" /> не
+             соответствующем ModeValue; для режима CFB при неправильно
+             заданном FeedbackSizeValue; при недостаточной длине
+             IV в соответствующих режимах.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>
+             Создание объекта криптографического преобразования - шифратора с
+             заданным ключом
+             (<paramref name="rgbKey" />) и синхропосылкой (
+             <paramref name="rgbIV" />)
+             </summary>
+      <param name="rgbKey">Ключ зашифрования в чистом виде. Длина ключа
+             должна составлять 32 байта. Если ключ не задан он будет
+             сгенерирован с ДСЧ.</param>
+      <param name="rgbIV">Синхропосылка. Длина синхропосылки должна быть
+             не менее 8 байт. Если синхропосылка отсутствует, то она будет
+             сгенерирована с ДСЧ.</param>
+      <returns>Симметричный шифратор.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">ModeValue ==
+             <see cref="T:System.Security.Cryptography.CipherMode" />.CTS; при <see cref="T:System.Security.Cryptography.PaddingMode" /> не
+             соответствующем ModeValue; для режима CFB при неправильно
+             заданном FeedbackSizeValue; при недостаточной длине
+             rgbIV в соответствующих режимах; при запрете импорта
+             "чистых" симметричных ключей.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.CreateEncryptor">
+      <summary>
+             Создание объекта криптографического преобразования -  шифратора.
+             </summary>
+      <returns>Объект симметричного зашифрования.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">ModeValue ==
+             <see cref="T:System.Security.Cryptography.CipherMode" />.CTS; при <see cref="T:System.Security.Cryptography.PaddingMode" /> не
+             соответствующем ModeValue; для режима CFB при неправильно
+             заданном FeedbackSizeValue; при недостаточной длине
+             IV в соответствующих режимах.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.GenerateIV">
+      <summary>
+             Генерация случайной синхропосылки.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.GenerateKey">
+      <summary>
+             Генерация случайного ключа.
+             </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.Wrap(System.Security.Cryptography.SymmetricAlgorithm,CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+             Зашифрование (экспорт) симметричного ключа.
+             </summary>
+      <param name="alg">Объект класса <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />,
+             содержащий экспортируемый симметричный ключ.</param>
+      <param name="method">Алгоритм экспорта ключа.</param>
+      <returns>Зашифрованный симметричный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.ArgumentException">Если alg не порожден
+             от класса Gost28147 (т.е. не поддерживает шифрование по
+             ГОСТ 28147).</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.Unwrap(System.Byte[],CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+             Расшифрование закрытого ключа.
+             </summary>
+      <param name="wrapped">Зашифрованный секретный ключ.</param>
+      <param name="method">Алгоритм экспорта ключа.</param>
+      <returns>Объект класса <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />,
+             содержащий расшифрованный закрытый ключ.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.ComputeHash(System.Security.Cryptography.HashAlgorithm)">
+      <summary>
+             Хэширует секретный ключ.
+             </summary>
+      <param name="hash">Класс, реализующий функцию хэширования.
+             Поддерживаются только следующие реализации функции хэширования:
+             <see cref="T:CryptoPro.Sharpei.Gost3411CryptoServiceProvider" /><see cref="T:CryptoPro.Sharpei.Gost3411_2012_256CryptoServiceProvider" /><see cref="T:CryptoPro.Sharpei.Gost3411_2012_512CryptoServiceProvider" /><see cref="T:CryptoPro.Sharpei.Gost3411HMAC" /><see cref="T:CryptoPro.Sharpei.Gost3411_2012_256HMAC" /><see cref="T:CryptoPro.Sharpei.Gost3411_2012_512HMAC" /><see cref="T:CryptoPro.Sharpei.Gost28147ImitCryptoServiceProvider" /></param>
+      <returns>Хэш-значение секретного ключа</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.DeriveKey(System.Byte[])">
+      <summary>
+             Создание симметричного ключа на основе пароля.
+             </summary>
+      <param name="password">Байты пароля на основе, которого
+             создается ключ.</param>
+      <returns>Симметричный ключ шифрования.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.ByDeriveBytes(System.Byte[])">
+      <summary>
+            Создание симметричного ключа на основе пароля.
+            </summary>
+      <param name="password">Байты пароля на основе, которого
+            создается ключ.</param>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.CipherOid">
+      <summary>
+            Параметры шифрования
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.Key">
+      <summary>
+             Получение или установка ключа используемого для симметричного
+             шифрования.
+             </summary>
+      <returns>Симметричный ключ в чистом виде.</returns>
+      <exception cref="T:System.ArgumentNullException">
+            При установки значения null.
+        </exception>
+      <exception cref="T:System.ArgumentException">При установке ключа
+             неправильного размера.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При запрете
+             импорта (экспорта) "чистых" ключей при установке (получении).
+             </exception>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.KeyHandle">
+      <summary>
+             Получение текущего (не дубликата) HANDLE ключа.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.ProviderHandle">
+      <summary>
+             Получение текущего HANDLE провайдера без изменения RefCount.
+             </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost28147CryptoServiceProvider.KeySize">
+      <summary>
+             Получение или установка размера ключа.
+             </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost28147ImitCryptoServiceProvider">
+      <summary>
+            Реализация имитовставки, вычисленной по алгоритму ГОСТ 28147
+            при помощи CSP.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost28147Imit">
+      <summary>
+            Абстрактный базовый класс для всех реализаций функции  
+            вычисления имитовставки по ГОСТ 28147.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147Imit.Create">
+      <summary>
+            Создание объекта вычисления имитовставки по ГОСТ 28147,
+            заданной в кофигурации по умолчанию.
+            </summary>
+      <returns>Алгоритм реализующий вычисление имитовставки.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147Imit.Create(System.String)">
+      <summary>
+            Создание объекта вычисления имитовставки по ГОСТ 28147,
+            заданной в кофигурации по умолчанию.
+            </summary>
+      <returns>Алгоритм реализующий вычисление имитовставки.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost28147Imit.KeyAlgorithm">
+      <summary>
+            Получение/установка ключа (алгоритма шифрования).
+            </summary>
+      <returns>Сииметричный ключ ГОСТ 28147.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147ImitCryptoServiceProvider.#ctor">
+      <summary>
+            Создание объекта класса <see cref="T:CryptoPro.Sharpei.Gost28147Imit" />.
+            </summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычисления
+            имитовставки не поддерживается ни одним из установленных
+            провайдеров.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147ImitCryptoServiceProvider.#ctor(System.Byte[])">
+      <summary>
+            Создание объекта класса <see cref="T:CryptoPro.Sharpei.Gost28147Imit" /> с заданным
+            ключем.
+            </summary>
+      <param name="key">Ключ для подсчета имитовставки</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычисления
+            имитовставки не поддерживается ни одним из установленных
+            провайдеров; запрещен импорт "чистых" симметричных ключей.
+            </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147ImitCryptoServiceProvider.#ctor(CryptoPro.Sharpei.Gost28147)">
+      <summary>
+             Создание объекта класса <see cref="T:CryptoPro.Sharpei.Gost28147ImitCryptoServiceProvider" /> 
+             с заданным симметричным ключом.
+             </summary>
+      <param name="key">Объект класса <see cref="T:CryptoPro.Sharpei.Gost28147" />, 
+             содержащий симметричный ключ.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычистления
+             имитовставки не поддерживается ни одним из установленных
+             провайдеров.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost28147ImitCryptoServiceProvider.Initialize">
+      <summary>
+            Приводит состояние класса в исходное значение.
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost28147ImitCryptoServiceProvider.HashHandle">
+      <summary>
+            Получение текущего (не дубликата) HANDLE HASH.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost28147ImitCryptoServiceProvider.CipherOid">
+      <summary>
+            Параметры шифрования симметричного ключа
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost28147ImitCryptoServiceProvider.Key">
+      <summary>
+            Устанавливает или получает ключ, используемый алгоритмом.
+            </summary>
+      <returns>"чистый" ключ для подсчета имитовставки.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Запрещен экспорт (импорт) "чистых" симметричных ключей
+            при получении (установке).
+            </exception>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost28147ImitCryptoServiceProvider.KeyAlgorithm">
+      <summary>
+            Получение/установка алгоритма (ключа) для подсчета имитовставки.
+            </summary>
+      <returns>Алгоритм (ключ) для подсчета имитовставки.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3410CryptoServiceProvider">
+      <summary>
+            Реализация алгоритма подписи по ГОСТ Р 34.10 через 
+            Cryptographic Service Provider (CSP). 
+            Этот класс не наследуется.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.#ctor">
+      <summary>
+            Конструктор, создающий объект класса 
+            <see cref="T:CryptoPro.Sharpei.Gost3410CryptoServiceProvider" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>
+            Конструктор алгоритма подписи по ГОСТ Р 34.10.
+            </summary>
+      <param name="parameters">Параметры алгоритма.</param>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.#ctor(System.IntPtr,System.Security.Cryptography.KeyNumber)">
+      <summary>
+            Конструктор алгоритма подписи по ГОСТ Р 34.10.
+            </summary>
+      <param name="hProvHandle">Хендл провайдера</param>
+      <param name="keySpec">Тип ключа</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.CreateSignature(System.Byte[])">
+      <summary>
+            Подпись заданного хэш.
+            </summary>
+      <param name="hash">Хэш для подписи.</param>
+      <returns>Подпись в виде байтового массива.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+            Проверяет подпись для хэш, вычисленного на алгоритме 
+            ГОСТ Р 34.11.
+            </summary>
+      <param name="hash">Хэш, для проверки подписи.</param>
+      <param name="signature">Подпись, которую необходимо 
+            проверить.</param>
+      <returns>true, если подпись верна, 
+            false иначе.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.SignData(System.Byte[],System.Object)">
+      <summary>
+            Вычисляет значение хэш для байтового массива и подписывает его.
+            </summary>
+      <param name="buffer">Данные, для которых вычисляется 
+            подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм 
+            хэширования.</param>
+      <returns>Подпись данных, выполненная по алгоритму 
+            ГОСТ Р 34.10.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">hashAlg не является
+             алгоритмом хэширования по ГОСТ Р 34.11.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.SignData(System.Byte[],System.Int32,System.Int32,System.Object)">
+      <summary>
+            Вычисление значения хэш для указанного интервала из байтового 
+            массива и его подпись.
+            </summary>
+      <param name="buffer">Данные, для которых вычисляется 
+            подпись.</param>
+      <param name="offset">Смещение от начала массива. </param>
+      <param name="count">Число байтов для подсчета хэша.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм 
+            хэширования.</param>
+      <returns>Подпись данных, выполненная по алгоритму 
+            ГОСТ Р 34.10</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">halg не является
+             алгоритмом хэширования по ГОСТ Р 34.11.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.SignData(System.IO.Stream,System.Object)">
+      <summary>
+            Вычисляет значение хэш для данных из потока и подписывает его.
+            </summary>
+      <param name="inputStream">Данные, для которых вычисляется подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм хэширования.</param>
+      <returns>Подпись данных, выполненная по алгоритму ГОСТ-34.10.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.SignHash(System.Byte[])">
+      <summary>
+            Вычисляет подпись для заданного значения хэш.
+            </summary>
+      <param name="hash">Подписываемое значение хэш.</param>
+      <returns>Подпись хэша, выполненная по алгоритму 
+            ГОСТ Р 34.10.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Объект не содержит 
+            секретного ключа или хэш имееет неправильный размер.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Sign" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.VerifyData(System.Byte[],System.Object,System.Byte[])">
+      <summary>
+            Проверка подписи для указанных данных.
+            </summary>
+      <param name="buffer">Данные, для которых проверяется 
+            подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм вычисления 
+            хэш по ГОСТ Р 34.11.</param>
+      <param name="signature">Подпись, которую необходимо 
+            проверить.</param>
+      <returns>true, если подпись подлинна, 
+            false - иначе.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">halg не является
+             алгоритмом хэширования по ГОСТ Р 34.11.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.VerifyData(System.IO.Stream,System.Object,System.Byte[])">
+      <summary>
+            Проверка подписи для указанных данных.
+            </summary>
+      <param name="inputStream">Данные, для которых проверяется 
+            подпись.</param>
+      <param name="hashAlg">Объект, реализующий алгоритм вычисления 
+            хэш по ГОСТ Р 34.11.</param>
+      <param name="signature">Подпись, подлинность которой необходимо
+            проверить.</param>
+      <returns>true, если продпись подлинна, 
+            false - иначе.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">halg не является
+            алгоритмом хэширования по ГОСТ Р 34.11.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.VerifyHash(System.Byte[],System.Byte[])">
+      <summary>
+            Проверяет подлинность подписи для указанного значения хэш.
+            </summary>
+      <param name="hash">Хэш, для которого проверяется 
+            подпись.</param>
+      <param name="signature">Подпись, подлинность которой 
+            необходимо проверить.</param>
+      <returns>true, если продпись подлинна, 
+            false - иначе.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.ExportCspBlob(System.Boolean)">
+      <summary>
+            Экспортирует параметры алгоритма в BLOB.
+            </summary>
+      <param name="includePrivateParameters">Для экспорта секретного
+            ключа.</param>
+      <returns>BLOB со структурой описанной для CSP.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте секретного
+            ключа.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.ExportCspBlob(System.Boolean,System.Boolean)">
+      <summary>
+            Экспортирует параметры алгоритма в BLOB. 
+            Отрытый ключ представляется парой (x,b), где байт b равен 2,
+            если координата y чётная и 3 в противном случае.
+            </summary>
+      <param name="includePrivateParameters">Для экспорта секретного
+            ключа.</param>
+      <param name="isPublicCompress">(флаг CRYPT_PUBLICCOMPRESS) 
+            Если isPublicCompress == true, отрытый ключ представляется парой (x,b), 
+            где байт b равен 2, если координата y чётная и 3 в противном случае.</param>
+      <returns>BLOB со структурой описанной для CSP.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте секретного
+            ключа.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.ImportCspBlob(System.Byte[])">
+      <summary>
+            Импорт параметров алгоритма ГОСТ Р 34.10.
+            </summary>
+      <param name="rawData">Байтовый массив, содержащий ключ
+            алгоритма ГОСТ Р 34.10.</param>.
+            
+            <exception cref="T:System.Security.Cryptography.CryptographicException">При экспорте секретного
+            ключа.</exception></member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>
+            Экспорт параметров <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" /> 
+            алгоритма ГОСТ Р 34.10 в CSP.
+            </summary>
+      <param name="includePrivateParameters">true, 
+            чтобы включить секретный ключ, false - для 
+            экспорта только открытого ключа и его параметров.</param>
+      <returns>Параметры в виде структуры 
+            <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" /></returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Export" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.ImportParameters(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+            Импорт параметров <see cref="T:CryptoPro.Sharpei.Gost3410Parameters" /> 
+            алгоритма ГОСТ Р 34.10.
+            </summary>
+      <param name="parameters">Параметры алгоритма 
+            ГОСТ Р 10.34.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При импорте секретного
+            ключа.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Import" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.CreateAgree(CryptoPro.Sharpei.Gost3410Parameters)">
+      <summary>
+            Создание ключа согласования (agree ключа).
+            </summary>
+      <param name="alg">Открытый ключ получателя.</param>
+      <returns>Ключ согласования <see cref="T:CryptoPro.Sharpei.GostSharedSecretAlgorithm" /> 
+            для шифрования ключевой информации.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.SetContainerPassword(System.Security.SecureString)">
+      <summary>
+            Установка пароля доступа к контейнеру.
+            </summary>
+      <param name="password">Пароль доступа к контейнеру.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.PreloadContainer">
+      <summary>
+            Предварительная загрузка контейнера в память.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.SelectContainer(System.Boolean,System.Boolean,System.IntPtr)">
+      <summary>
+            Вывод диалогового окна выбора контейнера и получение 
+            имени выбранного контейнера
+            </summary>
+      <param name="fullyQualifiedContainerName">Вернуть полностью
+            кваллифицированное имя контейнера.</param>
+      <param name="machine">Использовать локальное хранилище
+            компьютера (true) или пользователя
+            (true).</param>
+      <param name="parent">HWND родительского окна или IntPtr.Zero,
+            для выдачи окна без родителя.</param>
+      <returns>Строку имени контейнера.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.CspKeyContainerInfo">
+      <summary>
+            Получает информацию о CSP <see cref="P:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.CspKeyContainerInfo" />, 
+            в котором хранится ключевая пара.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.KeySize">
+      <summary>
+            Возвращает длину ключа, используемого в алгоритме, в битах.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.PersistKeyInCsp">
+      <summary>
+            Возвращает или устанавливает флаг, указывающий, должен ли ключ 
+            храниться в CSP.
+            </summary>
+      <returns>true, если ключ должен храниться в CSP, 
+            false - иначе.
+            </returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create, Delete" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.PublicOnly">
+      <summary>
+            Получает значение, указывающее, не содержит ли объект 
+            <see cref="T:CryptoPro.Sharpei.Gost3410CryptoServiceProvider" />
+            только открытый ключ.
+            </summary>
+      <returns>true, если 
+            <see cref="T:CryptoPro.Sharpei.Gost3410CryptoServiceProvider" /> содержит только 
+            открытый ключ, false - иначе.
+            </returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.KeyContainerPermission" Flags="Open, Create" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.UseMachineKeyStore">
+      <summary> 
+            Возвращает или устанавливает флаг того, что ключ должен храниться 
+            в STORE ключей компьютера, а не в профиле пользователя.
+            </summary>
+      <returns>true, если ключ должен храниться в банке ключей 
+            компьютера, false - иначе.
+            </returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.ProviderHandle">
+      <summary>
+            Получение текущего HANDLE провайдера без изменения RefCount.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.KeyHandle">
+      <summary>
+            Получение текущего (не дубликата) HANDLE ключа.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.CipherOid">
+      <summary>
+            Параметры шифрования
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3410CryptoServiceProvider.ContainerCertificate">
+      <summary>
+            Получение/установка сертификата в конейнер.
+            </summary>
+      <exception cref="T:System.ArgumentNullException">
+            При установки значения null.
+        </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+      <returns>Возвращается хранимый сертификат или null,
+            если сертификат в контейнере отсутствует.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3410Parameters">
+      <summary>
+            Структура, содержащая параметры алгоритма подписи ГОСТ Р 34.10
+            и алгоритма формирования общего секретного ключа, включая
+            открытый ключ.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Gost3410Parameters.PublicKeyParamSet">
+      <summary>OID параметров открытого ключа.</summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Gost3410Parameters.DigestParamSet">
+      <summary>OID параметров хэширования.</summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Gost3410Parameters.EncryptionParamSet">
+      <summary>OID параметров шифрования.</summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Gost3410Parameters.PublicKey">
+      <summary>Открытый ключ.</summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Gost3410Parameters.PrivateKey">
+      <summary>Секретный ключ.</summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3411">
+      <summary>
+            Абстрактный базовый класс для всех реализаций алгоритма ГОСТ Р 34.11.
+            Все реализации алгоритма ГОСТ Р 34.11 должны быть отнаследованы от данного класса.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411.#ctor">
+      <summary>
+            Конструктор объекта, поддерживающего алгоритм ГОСТ Р 34.11.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411.Create">
+      <summary>
+            Создание объекта заданной по умолчанию реализации алгоритма ГОСТ Р 34.11.
+            </summary>
+      <returns>Объект, реализующий алгоритм ГОСТ Р 34.11.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411.Create(System.String)">
+      <summary>
+            Создание объекта заданной параметром реализации алгоритма ГОСТ Р 34.11.
+            </summary>
+      <param name="hashName">Имя реализации алгоритма ГОСТ Р 34.11</param>
+      <returns>Объект реализующий алгоритм ГОСТ Р 34.11.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3411CryptoServiceProvider">
+      <summary>
+            Реализация алгоритма хэширования по ГОСТ Р 34-11 через 
+            Cryptographic Service Provider (CSP). Наследование от данного класса 
+            запрещено.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411CryptoServiceProvider.#ctor">
+      <summary>
+            Создает новый объект класса <see cref="T:CryptoPro.Sharpei.Gost3411CryptoServiceProvider" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411CryptoServiceProvider.Initialize">
+      <summary>
+            Инициализирует объект класса Gost3411CryptoServiceProvider.
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411CryptoServiceProvider.HashHandle">
+      <summary>
+            Получение текущего (не дубликата) HANDLE хэша.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Gost3411HMAC">
+      <summary>
+            Вычисляет HMAC на алгоритме вычисления хэш ГОСТ Р 34.11.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411HMAC.#ctor">
+      <summary>
+            Создание нового объекта класса <see cref="T:CryptoPro.Sharpei.Gost3411HMAC" />.
+            </summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычисления
+            HMAC не поддерживается ни одним из установленных
+            провайдеров.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411HMAC.#ctor(System.Byte[])">
+      <summary>
+            Создание нового объекта класса <see cref="T:CryptoPro.Sharpei.Gost3411HMAC" />
+            с заданным ключом.
+            </summary>
+      <param name="key">Ключ для вычисления HMAC на основе алгоритма 
+            ГОСТ Р 3411.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычистления
+            HMAC не поддерживается ни одним из установленных
+            провайдеров; запрещен импорт "чистых" симметричных ключей.
+            </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411HMAC.#ctor(CryptoPro.Sharpei.Gost28147)">
+      <summary>
+            Создание нового объекта класса <see cref="T:CryptoPro.Sharpei.Gost3411HMAC" /> 
+            с заданным ключом.
+            </summary>
+      <param name="alg">Объект, содержащий ключ.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Алгоритм вычистления
+            HMAC не поддерживается ни одним из установленных
+            провайдеров.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411HMAC.HashCore(System.Byte[],System.Int32,System.Int32)">
+      <summary>
+            Шаг вычисления HMAC.
+            </summary>
+      <param name="rgb">Входные данные. </param>
+      <param name="ib">Смещение от начала байтового массива. </param>
+      <param name="cb">Количество считываемых байтов. </param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411HMAC.HashFinal">
+      <summary>
+            Завершение вычисления HMAC и получение результата.
+            </summary>
+      <returns>Вычисленное значение HMAC в виде байтового массива.
+            </returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411HMAC.Initialize">
+      <summary>
+            Инициализирует стандартное вычисление HMAC.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Gost3411HMAC.Dispose(System.Boolean)">
+      <summary>
+            Освобождает неуправляемые ресурсы объекта 
+            <see cref="T:CryptoPro.Sharpei.Gost3411HMAC" />, и, при 
+            необходимости, управляемые. 
+            </summary>
+      <param name="disposing">true, если разрешен 
+            доступ к другим объектам, false - другие объекты 
+            могут быть уничтожены.
+            </param>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411HMAC.HashHandle">
+      <summary>
+            Получение текущего (не дубликата) HANDLE HASH.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411HMAC.KeyAlgorithm">
+      <summary>
+            Получение/установка алгоритма (ключа) для подсчета HMAC.
+            </summary>
+      <returns>Алгоритм (ключ) для подсчета HMAC.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Gost3411HMAC.Key">
+      <summary>
+            Устанавливает или получает ключ, используемый алгоритмом.
+            </summary>
+      <returns>"чистый" ключ для подсчета HMAC.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+            Запрещен экспорт (импорт) "чистых" симметричных ключей
+            при получении (установке).
+            </exception>
+    </member>
+    <member name="T:CryptoPro.Sharpei.GostSharedSecretCryptoServiceProvider">
+      <summary>
+            Реализация ключа согласования через криптопровайдер.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.GostSharedSecretAlgorithm">
+      <summary>
+            Абстрактный базовый класс для всех реализаций ключа согласования.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSharedSecretAlgorithm.Wrap(System.Security.Cryptography.SymmetricAlgorithm,CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Шифрует секретный ключ.
+            </summary>
+      <param name="alg">Объект класса <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />, 
+            содержащий секретный ключ. </param>
+      <param name="method">Метод зашифрования ключа.</param>
+      <returns>Зашифрованный ключ.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSharedSecretAlgorithm.Unwrap(System.Byte[],CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Расшифровывает секретный ключ.
+            </summary>
+      <param name="wrapped">Зашифрованный ключ.</param>
+      <param name="method">Метод зашифрования ключа.</param>
+      <returns>Объкт класса <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />, содержащий 
+            секретный ключ.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSharedSecretAlgorithm.Dispose(System.Boolean)">
+      <summary>
+            Освобождение ресурсов занятых класом.
+            </summary>
+      <param name="disposing">Вызов из finalize.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSharedSecretAlgorithm.Dispose">
+      <summary>
+            Освобождение занятых ресурсов.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSharedSecretCryptoServiceProvider.Wrap(System.Security.Cryptography.SymmetricAlgorithm,CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Зашифрование (экспорт) симметричного ключа.
+            </summary>
+      <param name="alg">Объект класса <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />, 
+            содержащий симметричный ключ.</param>
+      <param name="method">Алгоритм экспорта ключа.</param>
+      <returns>Зашифрованный симметричный ключ.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSharedSecretCryptoServiceProvider.Unwrap(System.Byte[],CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Расшифрование симметричного ключа.
+            </summary>
+      <param name="wrapped">Зашифрованный секретный ключ.</param>
+      <param name="method">Метод зашифрования ключа.</param>
+      <returns>Объект класса <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />, 
+            содержащий расшифрованный закрытый ключ.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При ошибках
+            на managed уровне.</exception>
+    </member>
+    <member name="P:CryptoPro.Sharpei.GostSharedSecretCryptoServiceProvider.KeyHandle">
+      <summary>
+            Получение текущего (не дубликата) HANDLE ключа.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.GostSharedSecretCryptoServiceProvider.ProviderHandle">
+      <summary>
+            Получение текущего HANDLE провайдера без изменения RefCount.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="T:CryptoPro.Sharpei.GostKeyExchangeDeformatter">
+      <summary>
+            Класс восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeDeformatter.#ctor">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.GostKeyExchangeDeformatter" /></summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeDeformatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.GostKeyExchangeDeformatter" /> 
+            с заданным ключом.
+            </summary>
+      <param name="key">Объект класса 
+            <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" />
+            содержащий секретный ключ для расшифрования данных обмена 
+            ключами.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeDeformatter.DecryptKeyExchange(System.Byte[])">
+      <summary>
+            Восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+      <param name="rgb">Данные обмена ключами.</param>
+      <returns>"Чистый" симметричный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeDeformatter.DecryptKeyExchange(CryptoPro.Sharpei.GostKeyTransport)">
+      <summary>
+            Восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+      <param name="transport"> Зашифрованные данные обмена 
+            ключами.</param>
+      <returns>Симметричный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeDeformatter.DecryptKeyExchangeData(System.Byte[])">
+      <summary>
+            Восстановления по данным обмена симметричного ключа
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+      <param name="data"> Зашифрованные данные обмена 
+            ключами.</param>
+      <returns>Симметричный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeDeformatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Устанавливает секретный ключ.
+            </summary>
+      <param name="key">Объект класса AsymmetricAlgorithm, 
+            содержащий секретный ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="key" /> не поддерживает алгоритм
+            <see cref="T:CryptoPro.Sharpei.Gost3410" />.</exception>
+    </member>
+    <member name="P:CryptoPro.Sharpei.GostKeyExchangeDeformatter.Parameters">
+      <summary>
+            Параметры алгоритма.
+            </summary>
+      <returns>Всегда null</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.GostSignatureDeformatter">
+      <summary>
+            Класс проверки подписи на алгоритме ГОСТ Р 34.10-2001.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSignatureDeformatter.#ctor">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.GostSignatureDeformatter" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSignatureDeformatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Создание объекта класса <see cref="T:CryptoPro.Sharpei.GostSignatureDeformatter" /> c 
+            заданным ключом.
+            </summary>
+      <param name="key">Криптопровайдер, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+            <paramref name="key" /> не является реализацией
+            алгоритма ГОСТ Р 34.10-2001.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSignatureDeformatter.SetHashAlgorithm(System.String)">
+      <summary>
+            Устанавливает алгоритм хэширования, используемый при проверке 
+            подписи.
+            </summary>
+      <param name="strName">Название алгоритма.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+            Устанавливаемое имя алгоритма неизвестно или не поддерживает
+            алгоритм ГОСТ Р 34.11-2001.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSignatureDeformatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Устанавливает ключ, используемый при проверке подписи.
+            </summary>
+      <param name="key">Объект, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+            <paramref name="key" /> не является реализацией
+            алгоритма ГОСТ Р 34.10-2001.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSignatureDeformatter.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>
+            Проверяет подпись от значения хэш-функции.
+            </summary>
+      <param name="rgbHash">Значение хэш-функции.</param>
+      <param name="rgbSignature">Значение подписи.</param>
+      <returns>true, если подпись верна, 
+            false - иначе.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+            Не установлен ключ проверки подписи.</exception>
+    </member>
+    <member name="T:CryptoPro.Sharpei.GostSignatureDescription">
+      <summary>
+            Класс, содержащий информацию о свойствах цифровой подписи на 
+            алгоритме ГОСТ Р 34.10-2001.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSignatureDescription.#ctor">
+      <summary>
+            Конструктор класса <see cref="T:CryptoPro.Sharpei.GostSignatureDescription" />.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.GostSignatureFormatter">
+      <summary>
+            Класc формирования подписи на алгоритме ГОСТ Р 34.10-2001.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSignatureFormatter.#ctor">
+      <summary>
+            Создание объекта класса <see cref="T:CryptoPro.Sharpei.GostSignatureFormatter" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSignatureFormatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Создание объекта класса <see cref="T:CryptoPro.Sharpei.GostSignatureFormatter" /> 
+            с заданным ключом.
+            </summary>
+      <param name="key">Провайдер, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+            <paramref name="key" /> не является реализацией
+            алгоритма ГОСТ Р 34.10-2001.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSignatureFormatter.CreateSignature(System.Byte[])">
+      <summary>
+            Создает подпись на значение хэш-функции.
+            </summary>
+      <param name="rgbHash">Подписываемый хэш.</param>
+      <returns>Подпись для <paramref name="rgbHash" /></returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+            Не установлен алгоритм хэширования или ключ</exception>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSignatureFormatter.SetHashAlgorithm(System.String)">
+      <summary>
+            Устанавливает алгоритм хэширования, используемый при создании 
+            подписи.
+            </summary>
+      <param name="strName">Название алгоритма.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+            Устанавливаемое имя алгоритма неизвестно или не поддерживает
+            алгоритм ГОСТ Р 34.11-2001.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostSignatureFormatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Устанавливает ключ, используемый при создании подписи.
+            </summary>
+      <param name="key">Объект, содержащий ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Параметр
+            <paramref name="key" /> не является реализацией
+            алгоритма ГОСТ Р 34.10-2001.</exception>
+    </member>
+    <member name="T:CryptoPro.Sharpei.GostKeyExchangeFormatter">
+      <summary>
+            Класс формирования данных для обмена симметричным ключом
+            на основе ГОСТ Р 34.10 
+            транспорта.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeFormatter.#ctor">
+      <summary>
+            Создание объекта класса <see cref="T:CryptoPro.Sharpei.GostKeyExchangeFormatter" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeFormatter.#ctor(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Конструктор объекта класса <see cref="T:CryptoPro.Sharpei.GostKeyExchangeFormatter" /> 
+            с заданным открытым ключом получателя.
+            </summary>
+      <param name="key">Класс, содержащий ключ, для которого 
+            будет производиться шифрование пердаваемой информации.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeFormatter.CreateKeyExchange(System.Byte[])">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="data">"Чистый" симметричный ключ 
+            ГОСТ 28147.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeFormatter.CreateKeyExchange(System.Byte[],System.Type)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="data">"Чистый" симметричный ключ 
+            ГОСТ 28147.</param>
+      <param name="symAlgType">Параметр не используется в
+            этой версии.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeFormatter.CreateKeyExchange(System.Security.Cryptography.SymmetricAlgorithm)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="alg">Симметричный ключ ГОСТ 28147.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeFormatter.CreateKeyExchangeData(System.Security.Cryptography.SymmetricAlgorithm)">
+      <summary>
+            Формирование данных обмена, на основе симметричного
+            ключа шифрования сообщения ГОСТ 28147.
+            </summary>
+      <param name="alg">Симметричный ключ ГОСТ 28147.</param>
+      <returns>Зашифрованные данные для отправки стороне 
+            получателю.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostKeyExchangeFormatter.SetKey(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <summary>
+            Устанавливает открытый ключ.
+            </summary>
+      <param name="key">Алгоритм, содержащий открытый ключ 
+            получателя.</param>
+    </member>
+    <member name="P:CryptoPro.Sharpei.GostKeyExchangeFormatter.Parameters">
+      <summary>
+            Возвращает параметры обмена ключами.
+            </summary>
+      <returns>Всегда null.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.PrfGost3411">
+      <summary>
+            Реализация алгоритма генерации псевдослучайной последовательности
+            с помощью функции PRF_GOSTR3411 (P_GOSTR3411). Может создавать
+            симметричные ключи ГОСТ 28147 по выходной последовательности.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.PrfGost3411.PrfGost3411KeyDerivationUrl">
+      <summary>
+            Преставляет URI алгоритма PRF_GOSTR3411 для использования в
+            протоколах на базе WS-SecureCoveration. Это поле является
+            константой.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.PrfGost3411.PrfGost3411ComputedKeyUrl">
+      <summary>
+            Преставляет URI алгоритма PRF_GOSTR3411 для использования в
+            протоколе WS-Trust в качестве алгоритма вычисления ключа.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411.#ctor(CryptoPro.Sharpei.Gost28147,System.Byte[],System.Byte[])">
+      <summary>
+            Создает новый объект класса <see cref="T:CryptoPro.Sharpei.PrfGost3411" />.
+            </summary>
+      <param name="key">Ключ для вычисления HMAC на основе алгоритма
+            ГОСТ Р 34.11. Алгоритм HMAC используется алгоритмом
+            PRF. Переданный ключ ДУБЛИРУЕТСЯ.</param>
+      <param name="label">Метка для порождения ключей (аргумент label
+            функции PRF).</param>
+      <param name="seed">Начальное число для порождения ключей (аргумент
+            seed функции PRF).</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411.#ctor(System.Byte[],System.Byte[],System.Byte[])">
+      <summary>
+            Создает новый объект класса <see cref="T:CryptoPro.Sharpei.PrfGost3411" />.
+            </summary>
+      <param name="key">Симметричный ключ ГОСТ 28147 для вычисления HMAC
+            на основе алгоритма ГОСТ Р 34.11. Алгоритм HMAC используется
+            алгоритмом PRF.</param>
+      <param name="label">Метка для порождения ключей (аргумент label
+            функции PRF).</param>
+      <param name="seed">Начальное число для порождения ключей (аргумент
+            seed функции PRF).</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411.DeriveKey">
+      <summary>
+             Порождает очередной симметричный ключ ГОСТ 28147 по алгоритму
+             PRF_GOSTR3411.
+             </summary>
+      <returns>Порождённый ключ <see cref="T:CryptoPro.Sharpei.Gost28147" />.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411.DeriveKey(System.Int32)">
+      <summary>
+             Порождает симметричный глюч ГОСТ 28147 по алгоритму
+             PRF_GOSTR3411 с необходимым порядковым номером.
+             </summary>
+      <param name="position">Позиция порождаемого ключа в выходной
+             последовательности функции PRF_GOSTR3411. Отсчитывается в
+             байтах.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Если position
+             не кратна длине ключа в байтах или ключ с требуемой позицией
+             уже был порождён.</exception>
+      <returns>Порождённый ключ <see cref="T:CryptoPro.Sharpei.Gost28147" />.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411.DeriveBytes">
+      <summary>
+             Порождает очередные 256 бит псевдослучайной последовательности по
+             алгоритму PRF_GOSTR3411.
+             </summary>
+      <returns>Порождённые 256 бит.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411.Dispose">
+      <summary>
+            Освобождает используемые ресурсы.
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.PrfGost3411.HashHandle">
+      <summary>
+            Получение текущего (не дубликата) HANDLE хэша.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="T:CryptoPro.Sharpei.PrfGost3411_2012_256">
+      <summary>
+            Реализация алгоритма генерации псевдослучайной последовательности
+            с помощью функции PRF_GOSTR3411_2012_256. Может создавать
+            симметричные ключи ГОСТ 28147 по выходной последовательности.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.PrfGost3411_2012_256.PrfGost3411KeyDerivationUrl">
+      <summary>
+            Преставляет URI алгоритма PRF_GOSTR3411_2012_256 для использования в
+            протоколах на базе WS-SecureCoveration. Это поле является
+            константой.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.PrfGost3411_2012_256.PrfGost3411ComputedKeyUrl">
+      <summary>
+            Преставляет URI алгоритма PRF_GOSTR3411_2012_256 для использования в
+            протоколе WS-Trust в качестве алгоритма вычисления ключа.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_256.#ctor(CryptoPro.Sharpei.Gost28147,System.Byte[],System.Byte[])">
+      <summary>
+            Создает новый объект класса <see cref="T:CryptoPro.Sharpei.PrfGost3411" />.
+            </summary>
+      <param name="key">Ключ для вычисления HMAC на основе алгоритма
+            ГОСТ Р 34.11-2012 256. Алгоритм HMAC используется алгоритмом
+            PRF. Переданный ключ ДУБЛИРУЕТСЯ.</param>
+      <param name="label">Метка для порождения ключей (аргумент label
+            функции PRF).</param>
+      <param name="seed">Начальное число для порождения ключей (аргумент
+            seed функции PRF).</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_256.#ctor(System.Byte[],System.Byte[],System.Byte[])">
+      <summary>
+            Создает новый объект класса <see cref="T:CryptoPro.Sharpei.PrfGost3411" />.
+            </summary>
+      <param name="key">Симметричный ключ ГОСТ 28147 для вычисления HMAC
+            на основе алгоритма ГОСТ Р 34.11-2012 256. Алгоритм HMAC используется
+            алгоритмом PRF.</param>
+      <param name="label">Метка для порождения ключей (аргумент label
+            функции PRF).</param>
+      <param name="seed">Начальное число для порождения ключей (аргумент
+            seed функции PRF).</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_256.DeriveKey">
+      <summary>
+             Порождает очередной симметричный ключ ГОСТ 28147 по алгоритму
+             PRF_GOSTR3411.
+             </summary>
+      <returns>Порождённый ключ <see cref="T:CryptoPro.Sharpei.Gost28147" />.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_256.DeriveKey(System.Int32)">
+      <summary>
+             Порождает симметричный глюч ГОСТ 28147 по алгоритму
+             PRF_GOSTR3411 с необходимым порядковым номером.
+             </summary>
+      <param name="position">Позиция порождаемого ключа в выходной
+             последовательности функции PRF_GOSTR3411. Отсчитывается в
+             байтах.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Если position
+             не кратна длине ключа в байтах или ключ с требуемой позицией
+             уже был порождён.</exception>
+      <returns>Порождённый ключ <see cref="T:CryptoPro.Sharpei.Gost28147" />.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_256.DeriveBytes">
+      <summary>
+             Порождает очередные 256 бит псевдослучайной последовательности по
+             алгоритму PRF_GOSTR3411.
+             </summary>
+      <returns>Порождённые 256 бит.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_256.Dispose">
+      <summary>
+            Освобождает используемые ресурсы.
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.PrfGost3411_2012_256.HashHandle">
+      <summary>
+            Получение текущего (не дубликата) HANDLE хэша.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="T:CryptoPro.Sharpei.PrfGost3411_2012_512">
+      <summary>
+            Реализация алгоритма генерации псевдослучайной последовательности
+            с помощью функции PRF_GOSTR3411_2012_512. Может создавать
+            симметричные ключи ГОСТ 28147 по выходной последовательности.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.PrfGost3411_2012_512.PrfGost3411KeyDerivationUrl">
+      <summary>
+            Преставляет URI алгоритма PRF_GOSTR3411_2012_512 для использования в
+            протоколах на базе WS-SecureCoveration. Это поле является
+            константой.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.PrfGost3411_2012_512.PrfGost3411ComputedKeyUrl">
+      <summary>
+            Преставляет URI алгоритма PRF_GOSTR3411_2012_512 для использования в
+            протоколе WS-Trust в качестве алгоритма вычисления ключа.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_512.#ctor(CryptoPro.Sharpei.Gost28147,System.Byte[],System.Byte[])">
+      <summary>
+            Создает новый объект класса <see cref="T:CryptoPro.Sharpei.PrfGost3411" />.
+            </summary>
+      <param name="key">Ключ для вычисления HMAC на основе алгоритма
+            ГОСТ Р 34.11-2012 512. Алгоритм HMAC используется алгоритмом
+            PRF. Переданный ключ ДУБЛИРУЕТСЯ.</param>
+      <param name="label">Метка для порождения ключей (аргумент label
+            функции PRF).</param>
+      <param name="seed">Начальное число для порождения ключей (аргумент
+            seed функции PRF).</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_512.#ctor(System.Byte[],System.Byte[],System.Byte[])">
+      <summary>
+            Создает новый объект класса <see cref="T:CryptoPro.Sharpei.PrfGost3411" />.
+            </summary>
+      <param name="key">Симметричный ключ ГОСТ 28147 для вычисления HMAC
+            на основе алгоритма ГОСТ Р 34.11-2012 512. Алгоритм HMAC используется
+            алгоритмом PRF.</param>
+      <param name="label">Метка для порождения ключей (аргумент label
+            функции PRF).</param>
+      <param name="seed">Начальное число для порождения ключей (аргумент
+            seed функции PRF).</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_512.DeriveKey">
+      <summary>
+             Порождает очередной симметричный ключ ГОСТ 28147 по алгоритму
+             PRF_GOSTR3411.
+             </summary>
+      <returns>Порождённый ключ <see cref="T:CryptoPro.Sharpei.Gost28147" />.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_512.DeriveKey(System.Int32)">
+      <summary>
+             Порождает симметричный глюч ГОСТ 28147 по алгоритму
+             PRF_GOSTR3411 с необходимым порядковым номером.
+             </summary>
+      <param name="position">Позиция порождаемого ключа в выходной
+             последовательности функции PRF_GOSTR3411. Отсчитывается в
+             байтах.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Если position
+             не кратна длине ключа в байтах или ключ с требуемой позицией
+             уже был порождён.</exception>
+      <returns>Порождённый ключ <see cref="T:CryptoPro.Sharpei.Gost28147" />.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_512.DeriveBytes">
+      <summary>
+             Порождает очередные 512 бит псевдослучайной последовательности по
+             алгоритму PRF_GOSTR3411.
+             </summary>
+      <returns>Порождённые 512 бит.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.PrfGost3411_2012_512.Dispose">
+      <summary>
+            Освобождает используемые ресурсы.
+            </summary>
+    </member>
+    <member name="P:CryptoPro.Sharpei.PrfGost3411_2012_512.HashHandle">
+      <summary>
+            Получение текущего (не дубликата) HANDLE хэша.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="T:CryptoPro.Sharpei.CPCryptoAPITransform">
+      <summary>
+            Криптографические преобразования данных. Этот класс не наследуется.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.CPCryptoAPITransform.Clear">
+      <summary>
+            Освобождает все ресурсы, используемые объектом 
+            <see cref="T:CryptoPro.Sharpei.CPCryptoAPITransform" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.CPCryptoAPITransform.Reset">
+      <summary>
+            Сброс внутреннего состояния <see cref="T:CryptoPro.Sharpei.CPCryptoAPITransform" />
+            в начальное, для проведения другой операции шифрования.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.CPCryptoAPITransform.Dispose">
+      <summary>
+            Освобождает все ресурсы, используемые объектом 
+            <see cref="T:CryptoPro.Sharpei.CPCryptoAPITransform" />.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.CPCryptoAPITransform.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+      <summary>
+            Шифрование (зашифрование или расшифрование)
+            заданной области входного массива байтов и в заданную 
+            область выходного массива байтов.
+            </summary>
+      <param name="inputBuffer">Входной массив байтов.</param>
+      <param name="inputOffset">Смещение от начала входного 
+            массива.</param>
+      <param name="inputCount">Число обрабатываемых байтов входного 
+            массива.</param>
+      <param name="outputBuffer">Выходной массив байтов.</param>
+      <param name="outputOffset">Смещение от начала выходного 
+            массива.</param>
+      <returns>Количество записанных байтов.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+      <exception cref="T:System.ArgumentException">Длина входного массива меньше 
+            суммы смещения от его начала и числа обрабатываемых 
+            байтов.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Если начальное
+            смещение отрицательно.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.CPCryptoAPITransform.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)">
+      <summary>
+            Шифрование (зашифрование или расшифрование) заключительного
+            массива байтов.
+            </summary>
+      <param name="inputBuffer">Входной массив байтов.</param>
+      <param name="inputOffset">Смещение от начала входного 
+            массива.</param>
+      <param name="inputCount">Число обрабатываемых байтов входного 
+            массива.</param>
+      <returns>Зашифрованный или расшифрованный оконечный 
+            блок.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="inputOffset" /> меньше нуля.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="inputCount" /> меньше нуля или 
+            входной блок выходит за границы массива.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При расшифровании
+            в блочном режиме массива байтов с разером не кратным
+            размеру блока.</exception>
+    </member>
+    <member name="P:CryptoPro.Sharpei.CPCryptoAPITransform.CanReuseTransform">
+      <summary>
+            Получает значение, указывающее, можно ли использовать 
+            преобразование повторно.
+            </summary>
+      <returns>Всегда true.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.CPCryptoAPITransform.CanTransformMultipleBlocks">
+      <summary>
+            Получает значение, указывающее на возможность преобразования 
+            нескольких блоков.
+            </summary>
+      <returns>Всегда true.</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.CPCryptoAPITransform.InputBlockSize">
+      <summary>
+            Получает размер входного блока в байтах.
+            </summary>
+      <returns>размер входного блока в байтах</returns>
+    </member>
+    <member name="P:CryptoPro.Sharpei.CPCryptoAPITransform.KeyHandle">
+      <summary>
+            Получает дескриптор ключа.
+            </summary>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:CryptoPro.Sharpei.CPCryptoAPITransform.OutputBlockSize">
+      <summary>
+            Получает размер выходного блока в байтах.
+            </summary>
+      <returns>размер входного блока в байтах</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.GostKeyWrapMethod">
+      <summary>
+            Алгоритм зашифрования секретного ключа.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.GostWrappedKey">
+      <summary>
+            Структура зашифрованного на алгоритме ГОСТ 28147 ключа.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.GostWrappedKey.Mac">
+      <summary>
+            Контрольная сумма (Message Authentication Code) зашифрованного 
+            ключа.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.GostWrappedKey.Ukm">
+      <summary>
+            UserKeyingMaterial
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.GostWrappedKey.EncryptionParamSet">
+      <summary>
+            OID параметров шифрования.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.GostWrappedKey.EncryptedKey">
+      <summary>
+            Зашифрованный ключ.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostWrappedKey.GetXmlWrappedKey">
+      <summary>
+            Упаковка в ASN.1 структуру Gost3410-KeyWrap.
+            </summary>
+      <returns>Байтовый массив ASN.1 структуры Gost3410-KeyWrap.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostWrappedKey.GetCryptoServiceProviderBlob">
+      <summary>
+            Упаковка в SIMPLE_BLOB.
+            </summary>
+      <returns>Байтовый массив SIMPLE_BLOB.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При ошибках
+            кодирования структуры.</exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostWrappedKey.SetByXmlWrappedKey(System.Byte[])">
+      <summary>
+            Получение структуры зашифрованного ключа на основе 
+            ASN.1 структуру Gost3410-KeyWrap.
+            </summary>
+      <param name="data">ASN.1 структура Gost3410-KeyWrap</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.GostWrappedKey.SetByCryptoServiceProviderBlob(System.Byte[])">
+      <summary>
+            Распаковка объекта из SIMPLE_BLOB.
+            </summary>
+      <param name="data">Данные, закодированный SIMPLE_BLOB.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При ошибках
+            декодирования структуры.</exception>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+  </members>
+</doc>

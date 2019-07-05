@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<doc>
+  <assembly>
+    <name>CryptoPro.Sharpei.Xml</name>
+  </assembly>
+  <members>
+    <member name="T:CryptoPro.Sharpei.Xml.CPEncryptedXml">
+      <summary>
+            Предоставляет дополнительные средства для выполнения 
+            XML шифрования на российских алгоритмах и российских стандартов.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPEncryptedXml.XmlEncGost28147Url">
+      <summary>
+            Универсальный код ресурса (URI) пространства имен на 
+            симметричное шифрование с использованием алгоритма ГОСТ 28147.
+            Это поле имеет постоянное значение. 
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPEncryptedXml.XmlEncGostCryptoProKeyWrapUrl">
+      <summary>
+            Универсальный код ресурса (URI) пространства имен на 
+            алгоритм экспорта КриптоПро.
+            Это поле имеет постоянное значение. 
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPEncryptedXml.XmlEncGostCryptoPro12KeyWrapUrl">
+      <summary>
+            Универсальный код ресурса (URI) пространства имен на 
+            алгоритм экспорта КриптоПро.
+            Это поле имеет постоянное значение. 
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPEncryptedXml.XmlEncGost28147KeyWrapUrl">
+      <summary>
+            Универсальный код ресурса (URI) пространства имен на 
+            алгоритм экспорта ГОСТ.
+            Это поле имеет постоянное значение. 
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPEncryptedXml.XmlEncGostKeyTransportUrl">
+      <summary>
+            Универсальный код ресурса (URI) пространства имен на 
+            алгоритм ключевого транспорта.
+            Это поле имеет постоянное значение. 
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPEncryptedXml.XmlEncGost2012_256KeyTransportUrl">
+      <summary>
+            Универсальный код ресурса (URI) пространства имен на 
+            алгоритм ключевого транспорта.
+            Это поле имеет постоянное значение. 
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPEncryptedXml.XmlEncGost2012_512KeyTransportUrl">
+      <summary>
+            Универсальный код ресурса (URI) пространства имен на 
+            алгоритм ключевого транспорта.
+            Это поле имеет постоянное значение. 
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.CPEncryptedXml.EncryptKey(CryptoPro.Sharpei.Gost28147,CryptoPro.Sharpei.Gost3410)">
+      <summary>
+            Экспорт симметричного ключа
+            <see cref="T:CryptoPro.Sharpei.Gost28147" /> 
+            на пользовательском ключе.
+            </summary>
+      <param name="simm">Симметричный экспортируемый ключ.</param>
+      <param name="gost">Пользовательский ключ экспорта.</param>
+      <returns>Байтовый массив, содержащий зашифрованный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.CPEncryptedXml.EncryptKey(CryptoPro.Sharpei.Gost28147,CryptoPro.Sharpei.Gost3410_2012_256)">
+      <summary>
+            Экспорт симметричного ключа
+            <see cref="T:CryptoPro.Sharpei.Gost28147" /> 
+            на пользовательском ключе.
+            </summary>
+      <param name="simm">Симметричный экспортируемый ключ.</param>
+      <param name="gost">Пользовательский ключ экспорта.</param>
+      <returns>Байтовый массив, содержащий зашифрованный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.CPEncryptedXml.EncryptKey(CryptoPro.Sharpei.Gost28147,CryptoPro.Sharpei.Gost3410_2012_256,CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Экспорт симметричного ключа
+            <see cref="T:CryptoPro.Sharpei.Gost28147" /> 
+            на пользовательском ключе.
+            </summary>
+      <param name="simm">Симметричный экспортируемый ключ.</param>
+      <param name="gost">Пользовательский ключ экспорта.</param>
+      <param name="wrapMethod">Алгоритм экпорта симметричных ключей</param>
+      <returns>Байтовый массив, содержащий зашифрованный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.CPEncryptedXml.EncryptKey(CryptoPro.Sharpei.Gost28147,CryptoPro.Sharpei.Gost3410_2012_512)">
+      <summary>
+            Экспорт симметричного ключа
+            <see cref="T:CryptoPro.Sharpei.Gost28147" /> 
+            на пользовательском ключе.
+            </summary>
+      <param name="simm">Симметричный экспортируемый ключ.</param>
+      <param name="gost">Пользовательский ключ экспорта.</param>
+      <returns>Байтовый массив, содержащий зашифрованный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.CPEncryptedXml.EncryptKey(CryptoPro.Sharpei.Gost28147,CryptoPro.Sharpei.Gost3410_2012_512,CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Экспорт симметричного ключа
+            <see cref="T:CryptoPro.Sharpei.Gost28147" /> 
+            на пользовательском ключе.
+            </summary>
+      <param name="simm">Симметричный экспортируемый ключ.</param>
+      <param name="gost">Пользовательский ключ экспорта.</param>
+      <param name="wrapMethod">Алгоритм экпорта</param>
+      <returns>Байтовый массив, содержащий зашифрованный ключ.</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.CPEncryptedXml.EncryptKey(System.Security.Cryptography.SymmetricAlgorithm,CryptoPro.Sharpei.Gost28147,CryptoPro.Sharpei.GostKeyWrapMethod)">
+      <summary>
+            Экспорт симметричного ключа на симметричном ключе.
+            </summary>
+      <param name="keyToEncrypt">Ключ, который экспортируется 
+            (зашифровывается).</param>
+      <param name="exportingKey">Ключ экспорта (зашифрования)</param>
+      <param name="method">Метод экспорта (зашифрования).</param>
+      <returns>Экспортированный (зашифрованный ключ).</returns>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.CPEncryptedXml.DecryptKeyClass(System.Byte[],CryptoPro.Sharpei.Gost3410,System.String)">
+      <summary>
+            Расшифровывание элемента &lt;EncryptedKey&gt;
+            с использованием алгоритма асимметричного шифрования
+            и импорт его в класс симметричного алгоритма.
+            </summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />, содержащий импортированный 
+            ключ.</returns>
+      <param name="keyData">Байтовый массив с зашифрованным элементом 
+            &lt;EncryptedKey&gt;</param>
+      <param name="gost">Ассиметричный ключ, используемый для расшифровки 
+            ключевай информации.</param>
+      <param name="symmetricAlgorithmUri">URI алгоритм экспорта.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.CPEncryptedXml.DecryptKeyClass(System.Byte[],CryptoPro.Sharpei.Gost3410_2012_256,System.String)">
+      <summary>
+            Расшифровывание элемента &lt;EncryptedKey&gt;
+            с использованием алгоритма асимметричного шифрования
+            и импорт его в класс симметричного алгоритма.
+            </summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />, содержащий импортированный 
+            ключ.</returns>
+      <param name="keyData">Байтовый массив с зашифрованным элементом 
+            &lt;EncryptedKey&gt;</param>
+      <param name="gost">Ассиметричный ключ, используемый для расшифровки 
+            ключевай информации.</param>
+      <param name="symmetricAlgorithmUri">URI алгоритм экспорта.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.CPEncryptedXml.DecryptKeyClass(System.Byte[],CryptoPro.Sharpei.Gost3410_2012_512,System.String)">
+      <summary>
+            Расшифровывание элемента &lt;EncryptedKey&gt;
+            с использованием алгоритма асимметричного шифрования
+            и импорт его в класс симметричного алгоритма.
+            </summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />, содержащий импортированный 
+            ключ.</returns>
+      <param name="keyData">Байтовый массив с зашифрованным элементом 
+            &lt;EncryptedKey&gt;</param>
+      <param name="gost">Ассиметричный ключ, используемый для расшифровки 
+            ключевай информации.</param>
+      <param name="symmetricAlgorithmUri">URI алгоритм экспорта.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null  или
+		        значение параметра 
+		         равно 
+		        null
+	            .
+	        </exception>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.CPEncryptedXml.DecryptKeyClass(System.Byte[],System.Security.Cryptography.RSA,System.Boolean,System.String)">
+      <summary>
+            Расшифровывание элемента &lt;EncryptedKey&gt;
+            с использованием алгоритма асимметричного шифрования
+            и импорт его в класс симметричного алгоритма.
+            </summary>
+      <param name="keyData">Массив байтов, представляющий зашифрованный 
+            элемент &lt;EncryptedKey&gt;.</param>
+      <param name="rsa">Асимметричный ключ, который используется для 
+            расшифрования <paramref name="keyData" /></param>
+      <param name="useOAEP">Значение, которое указывает, используется ли 
+            заполнение Optimal Asymmetric Encryption Padding (OAEP).</param>
+      <param name="symmetricAlgorithmUri">URI алгоритма создаваемого 
+            ключа.</param>
+      <returns>Ключ в виде класса симметричного алгоритма.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.CPEncryptedXml.DecryptKeyClass(System.Byte[],System.Security.Cryptography.SymmetricAlgorithm,System.String,System.String)">
+      <summary>
+            Расшифровывание элемент &lt;EncryptedKey&gt;
+            с использованием алгоритма симметричного шифрования
+            и импорт его в класс симметричного алгоритма.
+            </summary>
+      <param name="keyData">Зашифрованный ключ.</param>
+      <param name="symmetricAlgorithm">Ключ расшифрования.</param>
+      <param name="symmetricAlgorithmUri">URI алгоритма 
+            получаемого ключа.</param>
+      <param name="encryptionKeyAlgorithm">URI алгоритма 
+            расшифрования ключа.</param>
+      <returns>Ключ в виде класса симметричного алгоритма.</returns>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Xml.CPSignedXml">
+      <summary>
+            Дополнительная информация для упрощения создания Xml подписи по ГОСТ 34.10.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3411UrlObsolete">
+      <summary>
+            Представляет универсальный код ресурса (URI) метода 
+            хэширования ГОСТ Р 34.11-2001. Это поле имеет постоянное значение.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3411Url">
+      <summary>
+            Представляет универсальный код ресурса (URI) метода 
+            хэширования ГОСТ Р 34.11-2001. Это поле имеет постоянное значение.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3410UrlObsolete">
+      <summary>
+            Представляет универсальный код ресурса (URI) метода подписи 
+            ГОСТ 34.10-2001 для цифровых подписей XML. Это поле имеет постоянное значение.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3410Url">
+      <summary>
+            Представляет универсальный код ресурса (URI) метода подписи 
+            ГОСТ 34.10-2001 для цифровых подписей XML. Это поле имеет постоянное значение.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3411HMACUrl">
+      <summary>
+            Представляет универсальный код ресурса (URI) алгоритма GOST3411HMAC
+            для цифровых подписей XML. Это поле имеет постоянное значение.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3411_2012_256Url">
+      <summary>
+            Представляет универсальный код ресурса (URI) метода 
+            хэширования ГОСТ Р 34.11-2012 256. Это поле имеет постоянное значение.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3410_2012_256Url">
+      <summary>
+            Представляет универсальный код ресурса (URI) метода подписи 
+            ГОСТ 34.10-2012 256 для цифровых подписей XML. Это поле имеет постоянное значение.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3411_2012_256HMACUrl">
+      <summary>
+            Представляет универсальный код ресурса (URI) алгоритма GOST3411HMAC
+            для цифровых подписей XML. Это поле имеет постоянное значение.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3411_2012_512Url">
+      <summary>
+            Представляет универсальный код ресурса (URI) метода 
+            хэширования ГОСТ Р 34.11-2012 512. Это поле имеет постоянное значение.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3410_2012_512Url">
+      <summary>
+            Представляет универсальный код ресурса (URI) метода подписи 
+            ГОСТ 34.10-2012 256 для цифровых подписей XML. Это поле имеет постоянное значение.
+            </summary>
+    </member>
+    <member name="F:CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3411_2012_512HMACUrl">
+      <summary>
+            Представляет универсальный код ресурса (URI) алгоритма GOST3411HMAC
+            для цифровых подписей XML. Это поле имеет постоянное значение.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Xml.Gost2012_256KeyValue">
+      <summary>
+            Представляет закрытый ключ ГОСТ 34.10-2012 256 элемента &lt;KeyInfo&gt;.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.Gost2012_256KeyValue.#ctor">
+      <summary>
+            Инициализирует новый экземпляр класса GostKeyValue с новым, 
+            сгенерированным случайным образом открытым ключом ГОСТ 34.10-2012 256.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.Gost2012_256KeyValue.#ctor(CryptoPro.Sharpei.Gost3410_2012_256)">
+      <summary>
+            Инициализирует новый экземпляр класса GostKeyValue с заданным 
+            открытым ключом ГОСТ 34.10-2012 256.
+            </summary>
+      <param name="key">Экземпляр реализации класса 
+            <see cref="T:CryptoPro.Sharpei.Gost3410_2012_256" />, в котором содержится открытый 
+            ключ.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.Gost2012_256KeyValue.GetXml">
+      <summary>
+            Возвращает XML представление подэлемента GostKeyValue 
+            </summary>
+      <returns>XML представление подэлемента GostKeyValue 
+            <see cref="T:System.Security.Cryptography.Xml.KeyInfo" />.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.Gost2012_256KeyValue.LoadXml(System.Xml.XmlElement)">
+      <summary>
+            Загружает состояние GostKeyValue из элемента XML.
+            </summary>
+      <param name="value">Элемент XML, из которого загружается 
+            состояние GostKeyValue.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Xml.Gost2012_256KeyValue.Key">
+      <summary>
+            Возвращает или устаналивает объект <see cref="T:CryptoPro.Sharpei.Gost3410_2012_256" />, 
+            которому принадлежит открытый ключ.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Xml.Gost2012_512KeyValue">
+      <summary>
+            Представляет закрытый ключ ГОСТ 34.10-2012 512 элемента &lt;KeyInfo&gt;.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.Gost2012_512KeyValue.#ctor">
+      <summary>
+            Инициализирует новый экземпляр класса GostKeyValue с новым, 
+            сгенерированным случайным образом открытым ключом ГОСТ 34.10-2012 512.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.Gost2012_512KeyValue.#ctor(CryptoPro.Sharpei.Gost3410_2012_512)">
+      <summary>
+            Инициализирует новый экземпляр класса GostKeyValue с заданным 
+            открытым ключом ГОСТ 34.10-2012 512.
+            </summary>
+      <param name="key">Экземпляр реализации класса 
+            <see cref="T:CryptoPro.Sharpei.Gost3410_2012_512" />, в котором содержится открытый 
+            ключ.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.Gost2012_512KeyValue.GetXml">
+      <summary>
+            Возвращает XML представление подэлемента GostKeyValue 
+            </summary>
+      <returns>XML представление подэлемента GostKeyValue 
+            <see cref="T:System.Security.Cryptography.Xml.KeyInfo" />.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.Gost2012_512KeyValue.LoadXml(System.Xml.XmlElement)">
+      <summary>
+            Загружает состояние GostKeyValue из элемента XML.
+            </summary>
+      <param name="value">Элемент XML, из которого загружается 
+            состояние GostKeyValue.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Xml.Gost2012_512KeyValue.Key">
+      <summary>
+            Возвращает или устаналивает объект <see cref="T:CryptoPro.Sharpei.Gost3410_2012_512" />, 
+            которому принадлежит открытый ключ.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Xml.GostKeyValue">
+      <summary>
+            Представляет закрытый ключ ГОСТ 34.10-2001 элемента &lt;KeyInfo&gt;.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.GostKeyValue.#ctor">
+      <summary>
+            Инициализирует новый экземпляр класса GostKeyValue с новым, 
+            сгенерированным случайным образом открытым ключом ГОСТ 34.10-2001.
+            </summary>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.GostKeyValue.#ctor(CryptoPro.Sharpei.Gost3410)">
+      <summary>
+            Инициализирует новый экземпляр класса GostKeyValue с заданным 
+            открытым ключом ГОСТ 34.10-2001.
+            </summary>
+      <param name="key">Экземпляр реализации класса 
+            <see cref="T:CryptoPro.Sharpei.Gost3410" />, в котором содержится открытый 
+            ключ.</param>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.GostKeyValue.GetXml">
+      <summary>
+            Возвращает XML представление подэлемента GostKeyValue 
+            </summary>
+      <returns>XML представление подэлемента GostKeyValue 
+            <see cref="T:System.Security.Cryptography.Xml.KeyInfo" />.</returns>
+    </member>
+    <member name="M:CryptoPro.Sharpei.Xml.GostKeyValue.LoadXml(System.Xml.XmlElement)">
+      <summary>
+            Загружает состояние GostKeyValue из элемента XML.
+            </summary>
+      <param name="value">Элемент XML, из которого загружается 
+            состояние GostKeyValue.</param>
+      <exception cref="T:System.ArgumentNullException">Значение 
+		    параметра  равно
+		    null .
+	        </exception>
+    </member>
+    <member name="P:CryptoPro.Sharpei.Xml.GostKeyValue.Key">
+      <summary>
+            Возвращает или устаналивает объект <see cref="T:CryptoPro.Sharpei.Gost3410" />, 
+            которому принадлежит открытый ключ.
+            </summary>
+    </member>
+    <member name="T:CryptoPro.Sharpei.Xml.XmlDsigSmevTransform">
+      <summary>
+            Правила трансформа описаны в http://forum.minsvyaz.ru/assets/files/app_5.docx
+            </summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,33 @@
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" 
+			xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1">
+   <S:Body>
+      <ns2:SendRequestRequest 
+		xmlns:ns3="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.1" 
+		xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" 
+		xmlns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+        <ns:SenderProvidedRequestData Id="SIGNED_BY_CONSUMER" 
+			xmlns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" 
+			xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" 
+			xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">	
+			<ns:MessageID>
+			</ns:MessageID>
+			<ns2:MessagePrimaryContent>
+				<tns:ExtractionInvalidDataRequest xmlns:tns="http://kvs.fri.com/extraction-invalid-data/1.0.3">
+					<tns:SNILS>00000055500</tns:SNILS>
+					<tns:TypeOfExtraction>Stable</tns:TypeOfExtraction>
+					<tns:ExtractionPeriod>
+						<tns:DocumentsValidOnDate>2015-06-20</tns:DocumentsValidOnDate>
+						<tns:DocumentsOnPeriod>
+							<tns:DateFrom>2014-08-13</tns:DateFrom>
+							<tns:DateTo>2015-08-13</tns:DateTo>
+						</tns:DocumentsOnPeriod>
+					</tns:ExtractionPeriod>
+				</tns:ExtractionInvalidDataRequest>
+			</ns2:MessagePrimaryContent>	
+			<ns:TestMessage/>
+		</ns:SenderProvidedRequestData>
+		<ns2:CallerInformationSystemSignature>
+		</ns2:CallerInformationSystemSignature>
+      </ns2:SendRequestRequest>
+   </S:Body>
+</S:Envelope>
