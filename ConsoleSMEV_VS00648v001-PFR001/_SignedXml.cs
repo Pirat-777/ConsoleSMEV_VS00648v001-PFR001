@@ -32,7 +32,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
                 SetPrefix(prefix, n);
             node.Prefix = prefix;
         }
-
+        
         public void ComputeSignature(string prefix)
         {
             this.BuildDigestedReferences();
@@ -93,7 +93,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             canonicalizationMethodObject.LoadInput(document);
             return canonicalizationMethodObject.GetDigestedOutput(hash);
         }
-
+        
         private void BuildDigestedReferences()
         {
             Type t = typeof(SignedXml);

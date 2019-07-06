@@ -10,25 +10,6 @@ namespace ConsoleSMEV_VS00648v001_PFR001
 {
     static class SignXml
     {
-        //private readonly string FileName;
-        //private readonly string SignedFileName;
-        //private readonly X509Certificate2 Certificate;
-        //private readonly bool MessageID;
-
-        //public SignXmlFile(
-        //    string FileName,
-        //    string SignedFileName,
-        //    X509Certificate2 Certificate = null,
-        //    bool MessageID = true
-        //    )
-        //{
-        //    this.FileName = FileName;
-        //    this.SignedFileName = SignedFileName;
-        //    this.Certificate = Certificate ?? SearhCert.GetCert();
-        //    this.MessageID = MessageID;
-        //}
-
-
         public static bool Signed(string file, X509Certificate2 certificate, string sigFileName = "", bool MessageID = true)
         {
             //-------------------------------------------
@@ -44,13 +25,13 @@ namespace ConsoleSMEV_VS00648v001_PFR001
 
             // Создаём объект SmevSignedXml - наследник класса SignedXml с перегруженным GetIdElement
             // для корректной обработки атрибута wsu:Id. 
-            _SignedXml signedXml = new _SignedXml(doc)
+            _SignedXml _signedXml = new _SignedXml(doc)
             {
                 // Задаём ключ подписи для документа SmevSignedXml.
                 SigningKey = certificate.PrivateKey
             };
             //-------------------------------------------
-
+            
             string IdMessageTypeSelector = "";
             if (doc.GetElementsByTagName("MessageTypeSelector", "*")[0] != null)
             {
@@ -105,30 +86,30 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             // рекомендациями СМЭВ.
             XmlDsigExcC14NTransform c14 = new XmlDsigExcC14NTransform();
             reference.AddTransform(c14);
-            signedXml.AddReference(reference);
+            _signedXml.AddReference(reference);
 
             // Добавляем преобразование для приведения подписываемого узла к каноническому виду
             // по алгоритму urn://smev-gov-ru/xmldsig/transform в соответствии с методическими
             // рекомендациями СМЭВ.
             XmlDsigSmevTransform dsig = new XmlDsigSmevTransform();
             reference.AddTransform(dsig);
-            signedXml.AddReference(reference);
+            _signedXml.AddReference(reference);
 
             // Задаём преобразование для приведения узла ds:SignedInfo к каноническому виду
             // по алгоритму http://www.w3.org/2001/10/xml-exc-c14n# в соответствии с методическими
             // рекомендациями СМЭВ.
-            signedXml.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigExcC14NTransformUrl;
+            _signedXml.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigExcC14NTransformUrl;
 
             // Задаём алгоритм подписи - ГОСТ Р 34.10-2001. Необходимо использовать устаревший
             // идентификатор данного алгоритма, т.к. именно такой идентификатор используется в
             // СМЭВ.
             if (certificate.GetKeyAlgorithm() != "1.2.643.7.1.1.1.1")
             {
-                signedXml.SignedInfo.SignatureMethod = CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3410UrlObsolete;//ГОСТ Р 34.10-2001
+                _signedXml.SignedInfo.SignatureMethod = CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3410UrlObsolete;//ГОСТ Р 34.10-2001
             }
             else
             {
-                signedXml.SignedInfo.SignatureMethod = CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3410_2012_256Url;//ГОСТ Р 34.10-2012 256бит
+                _signedXml.SignedInfo.SignatureMethod = CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3410_2012_256Url;//ГОСТ Р 34.10-2012 256бит
             }
 
             // Create a new KeyInfo object.
@@ -139,7 +120,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             keyInfo.AddClause(new KeyInfoX509Data(certificate));
 
             // Add the KeyInfo object to the SignedXml object.
-            signedXml.KeyInfo = keyInfo;
+            _signedXml.KeyInfo = keyInfo;
 
             if (doc.GetElementsByTagName("Timestamp", "*")[0] != null)
             {
@@ -157,25 +138,15 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             }
 
             // Вычисляем подпись.
-            signedXml.ComputeSignature("ds");
-
+            _signedXml.ComputeSignature("ds");
             // Получаем представление подписи в виде XML.
-            XmlElement xmlDigitalSignature = signedXml.GetXml("ds");
-
-            //// Получаем представление подписи в виде XML.
-            //XmlElement xmlDigitalSignature = signedXml.GetXml();
-
+            XmlElement xmlDigitalSignature = _signedXml.GetXml("ds");
+            
             doc.GetElementsByTagName("CallerInformationSystemSignature","*")[0].PrependChild(
                 doc.ImportNode(xmlDigitalSignature, true));
-            
-            // Сохраняем подписанный документ в файл.
-            //using (XmlTextWriter xmltw = new XmlTextWriter(SignedFileName,
-            //    new UTF8Encoding(false)))
-            //{
-            //    doc.WriteTo(xmltw);                
-            //}
+         
             if (sigFileName == "")
-                sigFileName = Path.GetDirectoryName(file) + "\\sig_" + Path.GetFileName(file);
+                sigFileName = Paths.App() + "\\out\\sig_" + Path.GetFileName(file);
 
             XmlTextWriter xmltw = new XmlTextWriter(sigFileName, new UTF8Encoding(false));
             doc.WriteTo(xmltw);

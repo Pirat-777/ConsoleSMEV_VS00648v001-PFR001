@@ -8,6 +8,23 @@
     "response": "response",
     "out": "out",
     "in": "in"
-  }
+  },
 
-}
+  "soapSet": {
+    "prefix": "urn:"
+  },
+
+    "soapAction": [
+      "GetRequest",
+      "Ack",
+      "GetResponse",
+      "GetStatus",
+      "SendRequest",
+      "SendResponse"
+    ],
+
+    "soapActionOnOff": {
+      "enable": "0"
+    }
+
+  }

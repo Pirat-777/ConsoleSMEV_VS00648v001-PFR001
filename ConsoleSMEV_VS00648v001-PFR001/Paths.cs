@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleSMEV_VS00648v001_PFR001
 {
@@ -21,22 +18,22 @@ namespace ConsoleSMEV_VS00648v001_PFR001
 
         public static string Request()
         {
-            return (pathApp + "\\" + Parametrs.Get("path:request") + "\\");
+            return (pathApp + "\\" + Parametrs.Get("path:request").First().Value + "\\");
         }
 
         public static string Response()
         {
-            return (pathApp + "\\" + Parametrs.Get("path:response") + "\\");
+            return (pathApp + "\\" + Parametrs.Get("path:response").First().Value + "\\");
         }
 
         public static string Out()
         {
-            return (pathApp + "\\"+Parametrs.Get("path:out") + "\\");
+            return (pathApp + "\\"+Parametrs.Get("path:out").First().Value + "\\");
         }
 
         public static string In()
         {
-            return (pathApp + "\\"+Parametrs.Get("path:in")+"\\");
+            return (pathApp + "\\"+Parametrs.Get("path:in").First().Value + "\\");
         }
         public static string App()
         {

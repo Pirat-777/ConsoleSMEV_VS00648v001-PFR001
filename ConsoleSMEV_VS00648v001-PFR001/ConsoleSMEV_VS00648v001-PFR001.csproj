@@ -91,6 +91,7 @@
     <Compile Include="Parametrs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Send.cs" />
     <Compile Include="SignXml.cs" />
     <Compile Include="_SignedXml.cs" />
   </ItemGroup>
