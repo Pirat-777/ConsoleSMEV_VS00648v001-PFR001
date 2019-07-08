@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleSMEV_VS00648v001_PFR001
@@ -16,14 +17,16 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             try
             {
                 Paths.CreateFolder();
-                                
-                Send.Go(out _, out _, new PrepareXml().Request("SendRequestRequestNoAttachTest.xml"));
 
-                Send.Go(out bool GetResult, out string GetPathInName, new PrepareXml().Request("GetResponseRequestTest.xml"));
-                if (GetResult)
+                int period = Convert.ToInt32( Parametrs.Get("periodStart").First().Value );
+                var startTimeSpan = TimeSpan.Zero;
+                var periodTimeSpan = TimeSpan.FromMinutes(period);
+
+                var timer = new System.Threading.Timer((e) =>
                 {
-                    new Ack().Go(GetPathInName);
-                }
+                    Start();
+                }, null, startTimeSpan, periodTimeSpan);
+
             }
             catch (Exception ex)
             {
@@ -33,6 +36,29 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             Console.WriteLine("end");
 
             Console.ReadKey();
+        }
+
+        private static void Start()
+        {
+            Send.Go(
+                    out _,
+                    out _,
+                    new PrepareXml().Request(
+                            Parametrs.Get("XmlSablon:SendRequestRequest").First().Value
+                        )
+                    );
+
+            Send.Go(
+                out bool GetResult,
+                out string GetPathInName,
+                new PrepareXml().Request(
+                        Parametrs.Get("XmlSablon:GetResponseRequest").First().Value
+                    )
+                );
+            if (GetResult)
+            {
+                new Ack().Go(GetPathInName);
+            }
         }
     }
 }

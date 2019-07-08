@@ -26,7 +26,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
 
         private void GetAckRequest(string MessageID)
         {
-            string AckShablon = "AckRequest.xml";
+            string AckShablon = Parametrs.Get("XmlSablon:AckShablon").First().Value;
 
             string pathAckShablon = Paths.Ack(AckShablon);
 

@@ -3,6 +3,12 @@
     "SubjectKeyIdentifier": "cf11a28052f81fde36b3f76fffda03f388aee09b"
   },
 
+  "XmlSablon": {
+    "AckShablon": "AckRequest.xml",
+    "SendRequestRequest": "SendRequestRequestNoAttachTest.xml",
+    "GetResponseRequest": "GetResponseRequestTest.xml"
+  },
+
   "path": {
     "request": "requestShablon",
     "response": "responseShablon",
@@ -29,6 +35,8 @@
     "enable": "0"
   },
 
-  "adresSmev": "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.2/ws?wsdl"
+  "adresSmev": "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.2/ws?wsdl",
+
+  "periodStart":"1" 
 
 }
