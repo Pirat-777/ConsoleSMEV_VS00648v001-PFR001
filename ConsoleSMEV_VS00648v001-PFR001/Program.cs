@@ -17,8 +17,13 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             {
                 Paths.CreateFolder();
                                 
-                Send.Go(new PrepareXml().Request("SendRequestRequestNoAttachTest.xml"));
-                Send.Go(new PrepareXml().Request("GetResponseRequestTest.xml"));
+                Send.Go(out _, out _, new PrepareXml().Request("SendRequestRequestNoAttachTest.xml"));
+
+                Send.Go(out bool GetResult, out string GetPathInName, new PrepareXml().Request("GetResponseRequestTest.xml"));
+                if (GetResult)
+                {
+                    new Ack().Go(GetPathInName);
+                }
             }
             catch (Exception ex)
             {

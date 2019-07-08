@@ -10,42 +10,46 @@ namespace ConsoleSMEV_VS00648v001_PFR001
 {
     class Ack
     {
-        public void Send(string fileName)
+        public void Go(string fileName)
         {
-            GetMessageID(fileName);
-
+            string MessageId = GetMessageID(fileName);
+            if(MessageId != "")
+            {
+                GetAckRequest(MessageId);
+            }
+            else
+            {
+                Console.WriteLine("Ack: нет MessageID");
+            }
+            
         }
 
-        protected void GetAckRequest(string MessageID)
-        {            
-            string pathAckReqShablon = SignSmevRequest.INI.ReadINI("AskXmlShablon", "path");
+        private void GetAckRequest(string MessageID)
+        {
+            string AckShablon = "AckRequest.xml";
+
+            string pathAckShablon = Paths.Ack(AckShablon);
+
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(pathAckReqShablon);
+            xmlDoc.Load(pathAckShablon);
 
             if (xmlDoc.GetElementsByTagName("AckTargetMessage", "*")[0] != null)
             {
                 xmlDoc.GetElementsByTagName("AckTargetMessage", "*")[0].InnerText = MessageID;
 
-                // Сохраняем документ в файл.
-                string fileName = SignSmevRequest.INI.ReadINI("outxml", "path")
-                                                + Path.GetFileNameWithoutExtension(pathAckReqShablon)
-                                                + "_"
-                                                + MessageID
-                                                + "_"
-                                                + DateTime.Now.ToString("yyyyMMddTHHmmssfff")
-                                                + ".xml";
-                using (XmlTextWriter xmltw = new XmlTextWriter(fileName, new UTF8Encoding(false)))
+                // Сохраняем документ в файл.                
+                using (XmlTextWriter xmltw = new XmlTextWriter(pathAckShablon, new UTF8Encoding(false)))
                 {
                     xmlDoc.WriteTo(xmltw);
                 }
 
-                SigAckFiles(fileName);
-                TZip.FilesToZip("MaskOutXml", "outxml", "Out");
-                new SignSmevRequest().LogMessage("Ack + MessageID: выполнено.", 1, 1, 10);
+                Send.Go(out _, out _, new PrepareXml().Ack(AckShablon));
+
+                Console.WriteLine("Ack + MessageID: выполнено.");
             }
             else
             {
-                new SignSmevRequest().LogMessage("Ack: Тег AckTargetMessage в xml не найден", 1, 1);
+                Console.WriteLine("Ack: Тег AckTargetMessage в xml не найден");
             }
         }
 

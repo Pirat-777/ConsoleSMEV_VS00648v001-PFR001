@@ -23,8 +23,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             return Path.GetFullPath(pathApp
                 + "\\"
                 + Parametrs.Get("path:ack").First().Value
-                + "\\"
-                + new CurrentTime().Get() + "_"
+                + "\\"                
                 + Path.GetFileName(file)
                 );
         }

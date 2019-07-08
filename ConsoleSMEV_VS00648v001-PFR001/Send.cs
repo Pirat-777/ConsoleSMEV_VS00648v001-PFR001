@@ -127,8 +127,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             else
             {
                 Console.WriteLine("Send: Нет файла для отправки в СМЭВ");
-            }
-            return result;
+            }            
         }
     }
 }

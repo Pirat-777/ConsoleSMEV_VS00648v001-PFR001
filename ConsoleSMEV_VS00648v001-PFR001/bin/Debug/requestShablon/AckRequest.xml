@@ -1,9 +1,0 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2">
-   <soapenv:Header/>
-   <soapenv:Body>
-		      <ns:AckRequest>
-		         <ns1:AckTargetMessage Id="SIGNED_BY_CALLER" accepted="true"></ns1:AckTargetMessage>
-		         <ns:CallerInformationSystemSignature></ns:CallerInformationSystemSignature>
-		      </ns:AckRequest>
-   </soapenv:Body>
-</soapenv:Envelope>
