@@ -5,26 +5,29 @@
 
   "path": {
     "request": "requestShablon",
-    "response": "response",
+    "response": "responseShablon",
     "out": "out",
-    "in": "in"
+    "in": "in",
+    "err": "err"
   },
 
   "soapSet": {
     "prefix": "urn:"
   },
 
-    "soapAction": [
-      "GetRequest",
-      "Ack",
-      "GetResponse",
-      "GetStatus",
-      "SendRequest",
-      "SendResponse"
-    ],
+  "soapAction": [
+    "GetRequest",
+    "Ack",
+    "GetResponse",
+    "GetStatus",
+    "SendRequest",
+    "SendResponse"
+  ],
 
-    "soapActionOnOff": {
-      "enable": "0"
-    }
+  "soapActionOnOff": {
+    "enable": "0"
+  },
 
-  }
+  "adresSmev": "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.2/ws?wsdl"
+
+}

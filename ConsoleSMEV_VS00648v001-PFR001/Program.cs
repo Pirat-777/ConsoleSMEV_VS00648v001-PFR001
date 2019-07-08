@@ -13,23 +13,17 @@ namespace ConsoleSMEV_VS00648v001_PFR001
     {
         static void Main(string[] args)
         {
-            Paths.CreateFolder();
-            X509Certificate2 certificate = Certificate.GetCert();
-
-            ////Test send
-            //string TestSendRequestFileName = "SendRequestRequestNoAttachTest.xml";
-            //string file = Path.GetFullPath(Paths.Request() + TestSendRequestFileName);
-            //string sigFile = Path.GetFullPath(Paths.Out() + "Sig_"+ TestSendRequestFileName);            
-            //SignXml.Signed(file, certificate, sigFile);
-            //Send.Go(sigFile);
-
-
-            //Test get
-            string TestGetRequestFileName = "GetResponseRequestTest.xml";
-            string file = Path.GetFullPath(Paths.Request() + TestGetRequestFileName);
-            string sigFile = Path.GetFullPath(Paths.Out() + "Sig_" + TestGetRequestFileName);
-            SignXml.Signed(file, certificate, sigFile);
-            Send.Go(sigFile);
+            try
+            {
+                Paths.CreateFolder();
+                                
+                Send.Go(new PrepareXml().Request("SendRequestRequestNoAttachTest.xml"));
+                Send.Go(new PrepareXml().Request("GetResponseRequestTest.xml"));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("err: {0}",ex.Message);
+            }            
 
             Console.WriteLine("end");
 

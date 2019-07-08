@@ -10,7 +10,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
 {
     static class SignXml
     {
-        public static bool Signed(string file, X509Certificate2 certificate, string sigFileName = "", bool MessageID = true)
+        public static bool Signed(string file, string sigFile, X509Certificate2 certificate, bool MessageID = true)
         {
             //-------------------------------------------
             // Создаем новый документ XML.
@@ -60,8 +60,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             {
                 IdMessageTypeSelector = doc.GetElementsByTagName("SenderProvidedRequestData", "*")[0].Attributes["Id"].Value;
             }
-            
-            var sign = certificate.PrivateKey;
+                        
             // Создаем ссылку на подписываемый узел XML. В данном примере и в методических
             // рекомендациях СМЭВ подписываемый узел soapenv:Body помечен идентификатором "body".
             Reference reference = new Reference
@@ -74,11 +73,11 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             // идентификатор используется в СМЭВ.
             if (certificate.GetKeyAlgorithm() != "1.2.643.7.1.1.1.1")
             {
-                reference.DigestMethod = CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3411UrlObsolete;//ГОСТ Р 34.11-94 
+                reference.DigestMethod = CPSignedXml.XmlDsigGost3411Url;//ГОСТ Р 34.11-94 
             }
             else
             {
-                reference.DigestMethod = CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3411_2012_256Url;//ГОСТ Р 34.11-2012 256бит
+                reference.DigestMethod = CPSignedXml.XmlDsigGost3411_2012_256Url;//ГОСТ Р 34.11-2012 256бит
             }
                                    
             // Добавляем преобразование для приведения подписываемого узла к каноническому виду
@@ -105,11 +104,11 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             // СМЭВ.
             if (certificate.GetKeyAlgorithm() != "1.2.643.7.1.1.1.1")
             {
-                _signedXml.SignedInfo.SignatureMethod = CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3410UrlObsolete;//ГОСТ Р 34.10-2001
+                _signedXml.SignedInfo.SignatureMethod = CPSignedXml.XmlDsigGost3410Url;//ГОСТ Р 34.10-2001
             }
             else
             {
-                _signedXml.SignedInfo.SignatureMethod = CryptoPro.Sharpei.Xml.CPSignedXml.XmlDsigGost3410_2012_256Url;//ГОСТ Р 34.10-2012 256бит
+                _signedXml.SignedInfo.SignatureMethod = CPSignedXml.XmlDsigGost3410_2012_256Url;//ГОСТ Р 34.10-2012 256бит
             }
 
             // Create a new KeyInfo object.
@@ -143,12 +142,10 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             XmlElement xmlDigitalSignature = _signedXml.GetXml("ds");
             
             doc.GetElementsByTagName("CallerInformationSystemSignature","*")[0].PrependChild(
-                doc.ImportNode(xmlDigitalSignature, true));
-         
-            if (sigFileName == "")
-                sigFileName = Paths.App() + "\\out\\sig_" + Path.GetFileName(file);
+                doc.ImportNode(xmlDigitalSignature, true)
+            );
 
-            XmlTextWriter xmltw = new XmlTextWriter(sigFileName, new UTF8Encoding(false));
+            XmlTextWriter xmltw = new XmlTextWriter(sigFile, new UTF8Encoding(false));
             doc.WriteTo(xmltw);
             xmltw.Close();
             

@@ -1,0 +1,2 @@
+
+Файл 'E:\Source\ConsoleSMEV_VS00648v001-PFR001\ConsoleSMEV_VS00648v001-PFR001\bin\Debug\out\sig_GetResponseRequestTest.xml' не найден.

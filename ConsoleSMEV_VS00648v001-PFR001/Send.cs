@@ -10,15 +10,15 @@ namespace ConsoleSMEV_VS00648v001_PFR001
 {
     static class Send
     {
-        public static bool Go(string file = null, string InFileFromSmev = null)
+        public static void Go(out bool result, out string pathInName, string sigFile = null)
         {
-            bool res = false;
-            if (file != null)
-            {   
+            result = false;
+            pathInName = "";
+            if (sigFile != null)
+            {
+                string soapTextPattern = "(<soap:envelope.*soap:envelope>)";                
                 try
                 {
-                    file = file.Replace("WebResponse_", "");
-
                     // Создаем новый документ XML.
                     XmlDocument doc = new XmlDocument
                     {
@@ -26,21 +26,22 @@ namespace ConsoleSMEV_VS00648v001_PFR001
                     };
                 
                     // Читаем документ из файла.
-                    using (XmlTextReader XmlTextR = new XmlTextReader(file))
+                    using (XmlTextReader XmlTextR = new XmlTextReader(sigFile))
                     {
                         doc.Load(XmlTextR);
                     }
-
-                    //Console.WriteLine("Вебзапрос");
+                                        
                     ServicePointManager.MaxServicePointIdleTime = 6000;
                     ServicePointManager.DefaultConnectionLimit = 100;
 
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.2/ws?wsdl");
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Parametrs.Get("adresSmev").First().Value);
                     request.Method = "POST";
                     //request.KeepAlive = true;                                     
                     request.ContentType = "text/xml;charset=\"utf-8\"";
                     //request.ProtocolVersion = HttpVersion.Version11;
 
+
+                    //для схемы 1.3--------------------
                     string postData = doc.InnerXml;
                     if (Parametrs.Get("soapActionOnOff:enable").First().Value == "1")
                     {
@@ -59,7 +60,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
 
                         request.Headers.Add("SOAPAction", pref + action);
                     }
-
+                    //---------------------------------
 
                     using (StreamWriter sw = new StreamWriter(request.GetRequestStream()))
                     {
@@ -70,18 +71,23 @@ namespace ConsoleSMEV_VS00648v001_PFR001
 
                     using (StreamReader swresp = new StreamReader(httpResponse.GetResponseStream(), Encoding.UTF8))
                     {
-                        string text = swresp.ReadToEnd();
-                       
-                        File.AppendAllText(
-                            Paths.In()
-                            + "Response_"
-                            + Path.GetFileName(file),
+                        string text = Regex.Match(
+                                        swresp.ReadToEnd()
+                                        , soapTextPattern, RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace
+                                      ).Value;
+
+                        pathInName = Paths.In(
+                            "response_"
+                            + Path.GetFileName(sigFile)
+                        );
+
+                        File.WriteAllText(
+                            pathInName,
                             text
-                            );
-                       
+                        );
                         httpResponse.Close();                        
                     }
-                    res = true;
+                    result = true;
                 }
                 catch (WebException ex)
                 {
@@ -93,12 +99,13 @@ namespace ConsoleSMEV_VS00648v001_PFR001
                             using (StreamReader reader = new StreamReader(respStream))
                             {
                                 string text = reader.ReadToEnd();
-                                //File.AppendAllText(
-                                //        inPath + "Err\\"
-                                //        + "Err_WebResponse_"
-                                //        + Path.GetFileName(file),
-                                //        text
-                                //        );
+                                File.WriteAllText(
+                                        Paths.Err(
+                                            "err_"
+                                            + Path.GetFileName(sigFile)
+                                        ),
+                                        Regex.Match(text, soapTextPattern, RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace).Value
+                                        );
                                 Console.WriteLine(text);
                             }
                         }
@@ -107,20 +114,21 @@ namespace ConsoleSMEV_VS00648v001_PFR001
                 }
                 catch (Exception ex)
                 {
-                    //File.AppendAllText(
-                    //            inPath + "Err\\"
-                    //            + "Err_WebResponse_"
-                    //            + Path.GetFileNameWithoutExtension(file) + ".txt",
-                    //            "\n" + ex.Message
-                    //            );
+                    File.WriteAllText(
+                                Paths.Err(
+                                    "err_"
+                                    + Path.GetFileNameWithoutExtension(sigFile) + ".txt"
+                                ),
+                                "\n" + ex.Message
+                                );
                     Console.WriteLine(ex.Message);
                 }
             }
             else
             {
-                Console.WriteLine("SendMsg: Нет файла для отправки в СМЭВ");
+                Console.WriteLine("Send: Нет файла для отправки в СМЭВ");
             }
-            return res;
+            return result;
         }
     }
 }

@@ -85,10 +85,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ack.cs" />
+    <Compile Include="CurrentTime.cs" />
+    <Compile Include="DataFromXml.cs" />
     <Compile Include="Paths.cs" />
     <Compile Include="Certificate.cs" />
     <Compile Include="GuidGenerator.cs" />
     <Compile Include="Parametrs.cs" />
+    <Compile Include="PrepareXml.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Send.cs" />
