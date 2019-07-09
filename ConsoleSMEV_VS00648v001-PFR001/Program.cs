@@ -40,6 +40,8 @@ namespace ConsoleSMEV_VS00648v001_PFR001
 
         private static void Start()
         {
+            ToZip();
+
             Send.Go(
                     out _,
                     out _,
@@ -58,6 +60,37 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             if (GetResult)
             {
                 new Ack().Go(GetPathInName);
+            }
+        }
+
+        private static void ToZip()
+        {
+            string[] paths = { Paths.In(), Paths.Out() };
+            var masks = Parametrs.Get("maskToZip");
+
+            foreach (var path in paths)
+            {
+                foreach (var mask in masks)
+                {
+                    if (mask.Value != null) 
+                    {                        
+                        if ( (new DirectoryInfo(path).Name == "in" && mask.Value.Contains("GetResponseRequest") == true) != true )
+                        {
+                            new Zip().Compress(
+                                mask.Value,
+                                path,
+                                new DirectoryInfo(path).Name
+                            );
+                        }
+                        else
+                        {
+                            foreach (var file in new DirectoryInfo(path).GetFiles(mask.Value).ToList())
+                            {
+                                File.Move(file.FullName.ToString(), Paths.ForProcessing(Path.GetFileName(file.ToString())));
+                            }                             
+                        }                        
+                    }
+                }                
             }
         }
     }

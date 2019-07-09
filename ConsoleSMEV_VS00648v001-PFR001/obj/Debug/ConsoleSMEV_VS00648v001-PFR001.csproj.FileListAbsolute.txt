@@ -76,3 +76,4 @@ D:\source\repos\ConsoleSMEV_VS00648v001-PFR001\ConsoleSMEV_VS00648v001-PFR001\ob
 D:\source\repos\ConsoleSMEV_VS00648v001-PFR001\ConsoleSMEV_VS00648v001-PFR001\obj\Debug\ConsoleSMEV_VS00648v001-PFR001.exe
 D:\source\repos\ConsoleSMEV_VS00648v001-PFR001\ConsoleSMEV_VS00648v001-PFR001\obj\Debug\ConsoleSMEV_VS00648v001-PFR001.pdb
 D:\source\repos\ConsoleSMEV_VS00648v001-PFR001\ConsoleSMEV_VS00648v001-PFR001\bin\Debug\CryptoPro.Sharpei.Xml.dll
+E:\Source\ConsoleSMEV_VS00648v001-PFR001\ConsoleSMEV_VS00648v001-PFR001\bin\Debug\Instruction.txt

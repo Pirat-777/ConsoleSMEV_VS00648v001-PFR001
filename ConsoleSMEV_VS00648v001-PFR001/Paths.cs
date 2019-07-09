@@ -16,6 +16,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
             Directory.CreateDirectory(pathApp + "\\" + Parametrs.Get("path:response").First().Value);
             Directory.CreateDirectory(pathApp + "\\" + Parametrs.Get("path:err").First().Value);
             Directory.CreateDirectory(pathApp + "\\" + Parametrs.Get("path:ack").First().Value);
+            Directory.CreateDirectory(pathApp + "\\" + Parametrs.Get("path:for_processing").First().Value);            
         }
 
         public static string Ack(string file = "")
@@ -54,8 +55,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
                 + "\\" 
                 + Parametrs.Get("path:out").First().Value 
                 + "\\"
-                + new CurrentTime().Get() + "_"
-                + Path.GetFileName(file)
+                + (file.Count() == 0 ? "" : (new CurrentTime().Get() + "_" + Path.GetFileName(file)))
                 );
         }
 
@@ -65,8 +65,7 @@ namespace ConsoleSMEV_VS00648v001_PFR001
                 + "\\" 
                 + Parametrs.Get("path:in").First().Value 
                 + "\\"
-                + new CurrentTime().Get() + "_"
-                + Path.GetFileName(file)
+                + (file.Count() == 0 ? "" : (new CurrentTime().Get() + "_" + Path.GetFileName(file)))
                 );
         }
         public static string Err(string file = "")
@@ -75,10 +74,19 @@ namespace ConsoleSMEV_VS00648v001_PFR001
                 + "\\" 
                 + Parametrs.Get("path:err").First().Value 
                 + "\\"
-                + new CurrentTime().Get() + "_"
-                + Path.GetFileName(file)
+                + file == "" ? "" : (new CurrentTime().Get() + "_" + Path.GetFileName(file))
                 );
         }
+
+        public static string ForProcessing(string file = "")
+        {
+            return Path.GetFullPath(pathApp
+                + "\\"
+                + Parametrs.Get("path:for_processing").First().Value
+                + "\\"
+                + Path.GetFileName(file)
+                );
+        }        
         public static string App()
         {
             return Path.GetFullPath(pathApp + "\\");

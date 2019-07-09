@@ -1,0 +1,70 @@
+﻿
+описание файла settings.json
+{
+	Сертификат организации для обмена сообщениями со СМЭВ
+  "Certificate": {
+    "SubjectKeyIdentifier": "cf11a28052f81fde36b3f76fffda03f388aee09b"
+  },
+
+  Шаблоны СМЭВ (необходимы для запрос/ответа)
+  "XmlSablon": {
+    "AckShablon": "AckRequest.xml",
+    "SendRequestRequest": "SendRequestRequestNoAttachTest.xml",
+    "GetResponseRequest": "GetResponseRequestTest.xml"
+  },
+
+  Пути в прграмме
+  "path": {
+	путь к шалонам запроса
+    "request": "requestShablon",
+
+	путь к шаблонам ответа
+    "response": "responseShablon",
+
+	пути для работы программы
+    "out": "out",
+    "in": "in",
+	"ack": "ackShablon",
+
+	путь в ошибочным сообщениям
+    "err": "err",    
+
+	папка с ответами из СМЭВ (для пользователя)
+    "for_processing": "forProcessing"
+  },
+
+  для схемы СМЭВ 1.3-------------------------------
+  "soapSet": {
+    "prefix": "urn:"
+  },
+
+  "soapAction": [
+    "GetRequest",
+    "Ack",
+    "GetResponse",
+    "GetStatus",
+    "SendRequest",
+    "SendResponse"
+  ],
+
+  для включения схемы 1.3 надо поменять значение на 1
+  "soapActionOnOff": {
+    "enable": "0"
+  },
+  для схемы СМЭВ 1.3-------------------------------
+
+
+  адрес СМЭВ
+  "adresSmev": "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.2/ws?wsdl",
+
+  период опроса (запрос-ответ) СМЭВ в минутах
+  "periodStart": "1",
+
+  Маска файлов для запаковки в zip
+  "maskToZip": [
+    "*GetResponseRequest*.xml",
+    "*SendRequestRequest*.xml",
+    "*AckRequest*.xml"
+  ]
+
+}

@@ -15,7 +15,8 @@
     "out": "out",
     "in": "in",
     "err": "err",
-    "ack": "ackShablon"
+    "ack": "ackShablon",
+    "for_processing": "forProcessing"
   },
 
   "soapSet": {
@@ -37,6 +38,12 @@
 
   "adresSmev": "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.2/ws?wsdl",
 
-  "periodStart":"1" 
+  "periodStart": "1",
+
+  "maskToZip": [
+    "*GetResponseRequest*.xml",
+    "*SendRequestRequest*.xml",
+    "*AckRequest*.xml"
+  ]
 
 }
